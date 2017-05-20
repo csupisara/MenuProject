@@ -3,36 +3,76 @@ package application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 
 public class MainController {
 
+	@FXML
+	private AnchorPane programPane;
+	
+	@FXML
+	private AnchorPane allMenuPane;
+	
+	@FXML
+	private TabPane tabPane;
+	
 	@FXML //Acts as a wire that connect the FXML file with MainController.
-	//	private Label myMessage;
-	private Tab menu;
-
+	private Tab menuTab;
+	
 	@FXML
-	private Tab status;
-
+	private SplitPane splitPane;
+	
 	@FXML
-	private TableColumn<String, String> check;
-
+	private ButtonBar naokiButton;
+	
 	@FXML
-	private TableColumn<String, String> order;
-
+	private ImageView naoki;
+	
 	@FXML
-	private TableColumn<String, String> picture;
-
+	private Label menuName;
+	
 	@FXML
-	private TableColumn<String, String> price;
-
+	private Label price;
+	
 	@FXML
-	private ProgressIndicator progress;
-
+	private AnchorPane confirmPane;
+	
+	@FXML
+	private SplitPane confirmSplit;
+	
+	@FXML
+	private AnchorPane confirmTablePane;
+	
+	@FXML
+	private TableView<TableColumn<String, String>> confirmTableView;
+	
+	@FXML
+	private TableColumn<String, String> tableColumn1;
+	
+	@FXML
+	private TableColumn<String, String> tableColumn2;
+	
+	@FXML
+	private TableColumn<String, String> tableColumn3;
+	
+	@FXML
+	private TableColumn<String, String> tableColumn4;
+	
+	@FXML
+	private TableColumn<String, String> tableColumn5;
+	
+	@FXML
+	private AnchorPane totalPane;
+	
 	@FXML
 	private Button confirm;
 	public void confirm(ActionEvent event){
@@ -46,8 +86,17 @@ public class MainController {
 	}
 	
 	@FXML
-	private TableView<TableColumn> table;
+	private Label totalLabel;
 	
 	@FXML
-	private SplitPane myMenu;
+	private Label itemLabel;
+
+	@FXML
+	private Tab statusTab;
+	
+	@FXML
+	private AnchorPane statusPane;
+
+	@FXML
+	private ProgressIndicator progress;
 }
