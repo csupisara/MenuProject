@@ -1,35 +1,20 @@
 package application;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
-public class Main extends Application {
-	@Override
-	public void start(Stage primaryStage) {
+public class Main {
 
-		try {
-			Parent root = FXMLLoader.load(ClassLoader.getSystemResource("application/MyMain.fxml"));
-			Scene scene = new Scene(root,700,500);
-			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			primaryStage.setScene(scene);
-			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	public static void main(String[] args) {
-		launch(args);
+	public static void main(String[]args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
+//		UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+		MenuBook menuBook = new MenuBook("EngMenu.csv");
+		ConsoleUI UI = new ConsoleUI( menuBook );
+		JamieGUI jamieGUI = new JamieGUI( UI );
+		UI.addObserver( jamieGUI );
 	}
 
 }
