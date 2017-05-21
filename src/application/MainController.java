@@ -1,5 +1,7 @@
 package application;
 
+import com.jfoenix.controls.JFXButton;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -13,14 +15,17 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 
 public class MainController {
 
-	@FXML
-	private AnchorPane programPane;
+//	@FXML
 	
 	@FXML
-	private AnchorPane allMenuPane;
+	private JFXButton test;
+	
+	@FXML
+	private HBox hBox;
 	
 	@FXML
 	private TabPane tabPane;
@@ -76,12 +81,18 @@ public class MainController {
 	@FXML
 	private Button confirm;
 	public void confirm(ActionEvent event){
-
+		
 	}
 
 	@FXML
 	private Button clear;
 	public void clear(ActionEvent event){
+		
+	}
+	
+	@FXML
+	private Button checkbill;
+	public void checkbill(ActionEvent event){
 		
 	}
 	
