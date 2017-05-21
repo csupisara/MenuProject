@@ -1,99 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.ButtonBar?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressIndicator?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ScrollBar?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="programPane" prefHeight="500" prefWidth="700" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane fx:id="programPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
-   
-      <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-          <Tab fx:id="menuTab" text="MENU">
-               <content>
-                  <SplitPane fx:id="splitPane" dividerPositions="0.5942857142857143" prefHeight="500.0" prefWidth="700.0">
-                     <items>
-                        <AnchorPane fx:id="allMenuPane" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <ButtonBar fx:id="naokiButton" layoutX="14.0" layoutY="14.0">
-                                 <buttons>
-                                    <ImageView fx:id="naoki" fitHeight="90.0" fitWidth="148.0">
-                                       <image>
-                                          <Image url="@../../../../../Desktop/sushi.jpg" />
-                                       </image>
-                                    </ImageView>
-                                    <Label fx:id="menuName" text="NAOKI" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Label>
-                                    <Label fx:id="price" text="200 Baht" />
-                                 </buttons>
-                              </ButtonBar>
-                           </children>
-                        </AnchorPane>
-                        <AnchorPane fx:id="confirmPane" prefHeight="466.0" prefWidth="285.0">
-                           <children>
-                              <SplitPane fx:id="confirmSplit" dividerPositions="0.6258064516129033" layoutX="1.0" layoutY="3.0" orientation="VERTICAL" prefHeight="467.0" prefWidth="418.0" AnchorPane.bottomAnchor="-3.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="3.0">
-                                <items>
-                                  <AnchorPane fx:id="confirmTablePane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+      <BorderPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="31.0" prefWidth="700.0" style="-fx-background-color: #008b8b;" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField blendMode="DARKEN" layoutX="616.0" layoutY="1.0" prefHeight="27.0" prefWidth="80.0" text="TABLE : 1">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="9.0" layoutY="1.0" text="SKE14 RESTAURANT" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab fx:id="menuTab" text="MENU">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                           <left>
+                              <AnchorPane fx:id="allMenuPane" prefHeight="436.0" prefWidth="273.0" style="-fx-background-color: #dcdcdc;" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <ScrollBar fx:id="scrollbar" layoutX="267.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="441.0" prefWidth="17.0" />
+                                    <VBox layoutX="32.0" layoutY="15.0" prefHeight="188.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="confirmTableView" layoutX="1.0" prefHeight="229.0" prefWidth="416.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@sushi.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXButton fx:id="test" prefHeight="30.0" prefWidth="200.0" text="NAOKI" underline="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <Label alignment="CENTER" prefHeight="28.0" prefWidth="201.0" text="200Baht">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                    <VBox layoutX="35.0" layoutY="208.0" prefHeight="165.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../../../../Desktop/sushi3.jpg" />
+                                             </image>
+                                          </ImageView>
+                                          <JFXButton fx:id="test2" prefHeight="30.0" prefWidth="200.0" text="ROLL" underline="true">
+                                             <font>
+                                                <Font name="System Bold" size="14.0" />
+                                             </font>
+                                          </JFXButton>
+                                          <Label alignment="CENTER" prefHeight="28.0" prefWidth="201.0" text="150Baht">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </left>
+                           <center>
+                              <BorderPane prefHeight="436.0" prefWidth="421.0" BorderPane.alignment="CENTER">
+                                 <top>
+                                  <AnchorPane fx:id="confirmTablePane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="416.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <TableView fx:id="confirmTableView" layoutX="-55.0" prefHeight="390.0" prefWidth="363.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                              <TableColumn fx:id="tableColumn1" prefWidth="16.86322021484375" text="#" />
-                                              <TableColumn fx:id="tableColumn2" prefWidth="131.13677978515625" text="name" />
-                                                <TableColumn fx:id="tableColumn3" minWidth="2.37347412109375" prefWidth="62.170166015625" text="quantity" />
-                                                <TableColumn fx:id="tableColumn4" prefWidth="39.96484375" text="price" />
+                                              <TableColumn fx:id="menuTableColumn1" prefWidth="26.409637451171875" text="#" />
+                                              <TableColumn fx:id="menuTableColumn2" prefWidth="279.1838684082031" text="name" />
+                                                <TableColumn fx:id="menuTableColumn3" minWidth="2.37347412109375" prefWidth="62.816162109375" text="quantity" />
+                                                <TableColumn fx:id="menuTableColumn4" prefWidth="46.81622314453125" text="price" />
                                             </columns>
                                           </TableView>
                                        </children>
-                                    </AnchorPane>         
-                                  <AnchorPane fx:id="totalPane" minHeight="0.0" minWidth="0.0" prefHeight="228.0" prefWidth="310.0">
+                                    </AnchorPane>
+                                 </top>
+                                 <bottom>
+                                  <AnchorPane fx:id="totalPane" minHeight="0.0" minWidth="0.0" prefHeight="52.0" prefWidth="416.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <JFXButton fx:id="confirm" layoutX="24.0" layoutY="123.0" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
-                                          <Label fx:id="itemLabel" layoutX="119.0" layoutY="68.0" prefHeight="17.0" prefWidth="87.0" text="ITEM: 0" />
-                                          <Label fx:id="totalLabel" layoutX="118.0" layoutY="93.0" prefHeight="17.0" prefWidth="89.0" text="TOTAL: 0" />
-                                          <JFXButton fx:id="clear" layoutX="187.0" layoutY="123.0" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <JFXButton fx:id="confirm" layoutX="228.0" layoutY="6.0" onAction="#confirm" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <Label fx:id="itemLabel" layoutX="15.0" layoutY="11.0" prefHeight="17.0" prefWidth="87.0" text="ITEM: 0" />
+                                          <Label fx:id="totalLabel" layoutX="102.0" layoutY="11.0" prefHeight="17.0" prefWidth="89.0" text="TOTAL: 0" />
+                                          <JFXButton fx:id="clear" layoutX="329.0" layoutY="6.0" onAction="#clear" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                        </children>
-                                    </AnchorPane>        
-                                </items>
-                              </SplitPane>
+                                    </AnchorPane>
+                                 </bottom>
+                              </BorderPane>
+                           </center>
+                        </BorderPane>
+                     </content>
+                </Tab>
+                <Tab fx:id="statusTab" text="STATUS">
+                  <content>
+                    <AnchorPane fx:id="statusPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <ProgressIndicator fx:id="progress" layoutX="508.0" layoutY="27.0" prefHeight="60.0" prefWidth="52.0" progress="0.0" style="-fx-background-color: #ffd700;" />
+                              <TableView prefHeight="467.0" prefWidth="492.0">
+                                 <columns>
+                                    <TableColumn fx:id="statusTableColumn1" prefWidth="24.010238647460938" text="#" />
+                                    <TableColumn fx:id="statusTableColumn2" prefWidth="251.9897575378418" text="name" />
+                                    <TableColumn fx:id="statusTableColumn3" minWidth="2.37347412109375" prefWidth="68.81535339355469" text="quantity" />
+                                    <TableColumn fx:id="statusTableColumn4" prefWidth="57.80799865722656" text="price" />
+                                    <TableColumn fx:id="statusTableColumn5" prefWidth="90.78305053710938" text="cook" />
+                                 </columns>
+                              </TableView>
+                              <Pane layoutX="487.0" layoutY="104.0" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXTextField layoutX="28.0" layoutY="91.0" prefHeight="25.0" prefWidth="87.0" text="MEMBER ID :" />
+                                    <JFXPasswordField layoutX="17.0" layoutY="131.0" prefHeight="25.0" prefWidth="133.0" />
+                                 </children>
+                              </Pane>
+                              <JFXButton fx:id="checkbill" layoutX="551.0" layoutY="350.0" onAction="#checkbill" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                            </children>
                         </AnchorPane>
-                     </items>
-                  </SplitPane>
-               </content>
-          </Tab>
-          <Tab fx:id="statusTab" text="STATUS">
-            <content>
-              <AnchorPane fx:id="statusPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ProgressIndicator fx:id="progress" layoutX="508.0" layoutY="42.0" prefHeight="45.0" prefWidth="41.0" progress="0.0" style="-fx-background-color: #ffd700;" />
-                        <TableView prefHeight="467.0" prefWidth="492.0">
-                           <columns>
-                              <TableColumn prefWidth="24.010238647460938" text="#" />
-                              <TableColumn prefWidth="251.9897575378418" text="name" />
-                              <TableColumn minWidth="2.37347412109375" prefWidth="68.81535339355469" text="quantity" />
-                              <TableColumn prefWidth="57.80799865722656" text="price" />
-                              <TableColumn prefWidth="90.78305053710938" text="cook" />
-                           </columns>
-                        </TableView>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-      
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
    </children>
 </AnchorPane>
