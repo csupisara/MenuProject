@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
@@ -34,9 +35,6 @@ public class MainController {
 	private Tab menuTab;
 	
 	@FXML
-	private SplitPane splitPane;
-	
-	@FXML
 	private ButtonBar naokiButton;
 	
 	@FXML
@@ -52,28 +50,37 @@ public class MainController {
 	private AnchorPane confirmPane;
 	
 	@FXML
-	private SplitPane confirmSplit;
-	
-	@FXML
 	private AnchorPane confirmTablePane;
 	
 	@FXML
 	private TableView<TableColumn<String, String>> confirmTableView;
 	
 	@FXML
-	private TableColumn<String, String> tableColumn1;
+	private TableColumn<String, String> menuTableColumn1;
 	
 	@FXML
-	private TableColumn<String, String> tableColumn2;
+	private TableColumn<String, String> menuTableColumn2;
 	
 	@FXML
-	private TableColumn<String, String> tableColumn3;
+	private TableColumn<String, String> menuTableColumn3;
 	
 	@FXML
-	private TableColumn<String, String> tableColumn4;
+	private TableColumn<String, String> menuTableColumn4;
 	
 	@FXML
-	private TableColumn<String, String> tableColumn5;
+	private TableColumn<String, String> statusTableColumn1;
+	
+	@FXML
+	private TableColumn<String, String> statusTableColumn2;
+	
+	@FXML
+	private TableColumn<String, String> statusTableColumn3;
+	
+	@FXML
+	private TableColumn<String, String> statusTableColumn4;
+	
+	@FXML
+	private TableColumn<String, String> statusTableColumn5;
 	
 	@FXML
 	private AnchorPane totalPane;
@@ -81,23 +88,33 @@ public class MainController {
 	@FXML
 	private Button confirm;
 	public void confirm(ActionEvent event){
-		
+		statusTableColumn1.setText(menuTableColumn1.getText());
+		statusTableColumn2.setText(menuTableColumn2.getText());
+		statusTableColumn3.setText(menuTableColumn3.getText());
+		statusTableColumn4.setText(menuTableColumn4.getText());
 	}
 
 	@FXML
 	private Button clear;
 	public void clear(ActionEvent event){
-		
+		menuTableColumn1.setText("");
+		menuTableColumn2.setText("");
+		menuTableColumn3.setText("");
+		menuTableColumn4.setText("");
 	}
 	
 	@FXML
 	private Button checkbill;
 	public void checkbill(ActionEvent event){
-		
 	}
+	
+	@FXML private ScrollBar scrollbar;
 	
 	@FXML
 	private Label totalLabel;
+	public void totalLabel(){
+		menuTableColumn3.getText();
+	}
 	
 	@FXML
 	private Label itemLabel;
