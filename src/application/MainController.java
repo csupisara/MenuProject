@@ -132,7 +132,6 @@ public class MainController extends Observable implements Initializable, Observe
 	@Override
 	public void update(Observable o, Object arg) {
 		consoleUI.deleteAllMenuInOrderList();
-		
 	}
 
 

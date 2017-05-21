@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -18,7 +25,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="programPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane fx:id="programPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -43,57 +50,12 @@
                 <Tab fx:id="menuTab" text="MENU">
                      <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
-                           <left>
-                              <AnchorPane fx:id="allMenuPane" prefHeight="436.0" prefWidth="273.0" style="-fx-background-color: #dcdcdc;" BorderPane.alignment="CENTER">
-                                 <children>
-                                    <ScrollBar layoutX="267.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="441.0" prefWidth="17.0" />
-                                    <VBox layoutX="32.0" layoutY="15.0" prefHeight="188.0" prefWidth="200.0">
-                                       <children>
-                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@sushi.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <JFXButton fx:id="test" prefHeight="30.0" prefWidth="200.0" text="NAOKI" underline="true">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="28.0" prefWidth="201.0" text="200Baht">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                    <VBox layoutX="35.0" layoutY="208.0" prefHeight="165.0" prefWidth="200.0">
-                                       <children>
-                                          <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../../../../Desktop/sushi3.jpg" />
-                                             </image>
-                                          </ImageView>
-                                          <JFXButton fx:id="test2" prefHeight="30.0" prefWidth="200.0" text="ROLL" underline="true">
-                                             <font>
-                                                <Font name="System Bold" size="14.0" />
-                                             </font>
-                                          </JFXButton>
-                                          <Label alignment="CENTER" prefHeight="28.0" prefWidth="201.0" text="150Baht">
-                                             <font>
-                                                <Font size="14.0" />
-                                             </font>
-                                          </Label>
-                                       </children>
-                                    </VBox>
-                                 </children>
-                              </AnchorPane>
-                           </left>
-                           <center>
+                           <right>
                               <BorderPane prefHeight="436.0" prefWidth="421.0" BorderPane.alignment="CENTER">
                                  <top>
                                   <AnchorPane fx:id="confirmTablePane" minHeight="0.0" minWidth="0.0" prefHeight="398.0" prefWidth="416.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <TableView fx:id="confirmTableView" layoutX="-55.0" prefHeight="390.0" prefWidth="363.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <TableView fx:id="confirmTableView" layoutY="-2.0" prefHeight="390.0" prefWidth="363.0" AnchorPane.bottomAnchor="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
                                             <columns>
                                               <TableColumn fx:id="menuTableColumn1" prefWidth="26.409637451171875" text="#" />
                                               <TableColumn fx:id="menuTableColumn2" prefWidth="279.1838684082031" text="name" />
@@ -115,6 +77,166 @@
                                     </AnchorPane>
                                  </bottom>
                               </BorderPane>
+                           </right>
+                           <center>
+                              <ScrollPane prefHeight="583.0" prefWidth="291.0" BorderPane.alignment="CENTER">
+                                 <content>
+                                    <VBox prefHeight="2440.0" prefWidth="288.0">
+                                       <children>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/1-Tom-Yum-Gung.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="54.0" layoutY="160.0" text="Tom Yam Kung">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane layoutX="10.0" layoutY="10.0" prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/2-gang-som-pak-ruam.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="14.0" layoutY="160.0" text="Gang Som Pak Ruam">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/3-gang-keow-wan.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="46.0" layoutY="160.0" text="Gang Keow Wan">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/4-Panang-Gai.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="70.0" layoutY="160.0" text="Panang Gai">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/5-gang-massaman.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="54.0" layoutY="160.0" text="Gang Massaman">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/6-pad-pongali-gai.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="51.0" layoutY="160.0" text="Gai Pad Pongali">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/7-gang-jeud-tow-who.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="80.0" layoutY="160.0" text="Gang Jued">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/8-jim-jum.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="90.0" layoutY="160.0" text="Jim Jum">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/9-kao-na-phet.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="70.0" layoutY="160.0" text="Kao Na Phet">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                          <Pane prefHeight="244.0" prefWidth="288.0">
+                                             <children>
+                                                <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="67.0" layoutY="3.0" pickOnBounds="true" smooth="false">
+                                                   <image>
+                                                      <Image url="@MenuPictures/10-kai-jiew-moo-saap.jpg" />
+                                                   </image>
+                                                </ImageView>
+                                                <Label layoutX="35.0" layoutY="160.0" text="Kai Jiew Moo Saap">
+                                                   <font>
+                                                      <Font size="24.0" />
+                                                   </font>
+                                                </Label>
+                                                <Button layoutX="109.0" layoutY="195.0" mnemonicParsing="false" text="Choose" />
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
                            </center>
                         </BorderPane>
                      </content>
