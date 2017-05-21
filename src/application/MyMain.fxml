@@ -107,10 +107,10 @@
                                  <bottom>
                                   <AnchorPane fx:id="totalPane" minHeight="0.0" minWidth="0.0" prefHeight="52.0" prefWidth="416.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <JFXButton fx:id="confirm" layoutX="228.0" layoutY="6.0" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <JFXButton fx:id="confirm" layoutX="228.0" layoutY="6.0" onAction="#confirm" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                           <Label fx:id="itemLabel" layoutX="15.0" layoutY="11.0" prefHeight="17.0" prefWidth="87.0" text="ITEM: 0" />
                                           <Label fx:id="totalLabel" layoutX="102.0" layoutY="11.0" prefHeight="17.0" prefWidth="89.0" text="TOTAL: 0" />
-                                          <JFXButton fx:id="clear" layoutX="329.0" layoutY="6.0" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <JFXButton fx:id="clear" layoutX="329.0" layoutY="6.0" onAction="#clear" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -139,7 +139,7 @@
                                     <Pane prefHeight="369.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
                                           <ProgressIndicator fx:id="progress" layoutX="27.0" layoutY="143.0" prefHeight="60.0" prefWidth="52.0" progress="0.0" style="-fx-background-color: #ffd700;" />
-                                          <JFXButton fx:id="checkbill" layoutX="53.0" layoutY="385.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" underline="true" />
+                                          <JFXButton fx:id="checkbill" layoutX="53.0" layoutY="385.0" onAction="#checkbill" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" underline="true" />
                                           <PasswordField layoutX="-5.0" layoutY="39.0" prefHeight="27.0" prefWidth="131.0" />
                                           <Label layoutX="1.0" layoutY="14.0" text="MEMBER ID (Discount 10%) :" />
                                           <JFXButton layoutX="132.0" layoutY="39.0" style="-fx-background-color: #008b8b;" text="ENTER" textFill="WHITE" />

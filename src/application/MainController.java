@@ -2,6 +2,8 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -26,14 +28,24 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class MainController implements Initializable {
-
+public class MainController extends Observable implements Initializable, Observer{
+	
+	ObservableList<Menu> list;
+	MenuBook menuBook = new MenuBook("EngMenu.csv");
+	public ConsoleUI consoleUI = new ConsoleUI(menuBook);
 	public ObservableList<Menu> table;
+	
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn3;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn4;
+	@FXML private TableView<Menu> statusTableView;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn1;
+	@FXML private TableColumn<Menu, String> statusTableColumn2;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn3;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn4;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn5;
 
 	public MainController() throws IOException {
 		menu();
@@ -50,7 +62,7 @@ public class MainController implements Initializable {
 	}
 
 	public void menu() throws IOException{
-		ObservableList<Menu> list = FXCollections.observableArrayList(
+		list = FXCollections.observableArrayList(
 				new Menu( 1 , "เจมมี่" , 999 ),
 				new Menu( 2 , "เจมมี่ สุดหล่อ" , 999 ),
 				new Menu( 3 , "เจมมี่ หล่อสุดๆ" , 999 ),
@@ -80,34 +92,19 @@ public class MainController implements Initializable {
 
 	@FXML private AnchorPane confirmTablePane;
 
-	@FXML private TableColumn<String, String> statusTableColumn1;
-
-	@FXML private TableColumn<String, String> statusTableColumn2;
-
-	@FXML private TableColumn<String, String> statusTableColumn3;
-
-	@FXML private TableColumn<String, String> statusTableColumn4;
-
-	@FXML private TableColumn<String, String> statusTableColumn5;
+	
 
 	@FXML private AnchorPane totalPane;
 
 	@FXML
 	private Button confirm;
 	public void confirm(ActionEvent event){
-		statusTableColumn1.setText(menuTableColumn1.getText());
-		statusTableColumn2.setText(menuTableColumn2.getText());
-		statusTableColumn3.setText(menuTableColumn3.getText());
-		statusTableColumn4.setText(menuTableColumn4.getText());
 	}
 
 	@FXML
 	private Button clear;
 	public void clear(ActionEvent event){
-		menuTableColumn1.setText("");
-		menuTableColumn2.setText("");
-		menuTableColumn3.setText("");
-		menuTableColumn4.setText("");
+		notifyObservers();
 	}
 
 	@FXML
@@ -131,6 +128,11 @@ public class MainController implements Initializable {
 	@FXML private AnchorPane statusPane;
 
 	@FXML private ProgressIndicator progress;
+
+	@Override
+	public void update(Observable o, Object arg) {
+		consoleUI.deleteMenuInOrderList(1);
+	}
 
 
 }
