@@ -16,16 +16,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 
-		//BorderPane root = new BorderPane();
-
-//		Image image = new Image(getClass().getResourceAsStream("sushi.jpg"));
-//
-//		Button button = new Button("Naoki", new ImageView(image));
-//
-//		button.setOnAction(e -> System.out.println("naoki"));
-//		HBox layout = new HBox();
-//		layout.getChildren().addAll(button);
-
 		try {
 			Parent root = FXMLLoader.load(ClassLoader.getSystemResource("application/MyMain.fxml"));
 			Scene scene = new Scene(root,700,500);
