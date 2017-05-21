@@ -99,7 +99,7 @@
                                               <TableColumn fx:id="menuTableColumn1" prefWidth="26.409637451171875" text="#" />
                                               <TableColumn fx:id="menuTableColumn2" prefWidth="279.1838684082031" text="name" />
                                                 <TableColumn fx:id="menuTableColumn3" minWidth="2.37347412109375" prefWidth="62.816162109375" text="quantity" />
-                                                <TableColumn prefWidth="46.81622314453125" text="price" />
+                                                <TableColumn fx:id="menuTableColumn4" prefWidth="46.81622314453125" text="price" />
                                             </columns>
                                           </TableView>
                                        </children>
