@@ -27,32 +27,38 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
 public class MainController implements Initializable {
-	
-	public ObservableList<Menu> list;
+
+	public ObservableList<Menu> table;
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn3;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn4;
-	
+
 	public MainController() throws IOException {
 		menu();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuTableColumn1"));
-		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuTableColumn2"));
-		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuTableColumn3"));
-		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuTableColumn4"));
-		
-		confirmTableView.setItems(list);
+		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
+		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
+		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
+		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
+
+		confirmTableView.setItems(table);
 	}
 
 	public void menu() throws IOException{
-		list = FXCollections.observableArrayList(new Menu(0,"MMMM",200));
+		ObservableList<Menu> list = FXCollections.observableArrayList(
+				new Menu( 1 , "เจมมี่" , 999 ),
+				new Menu( 2 , "เจมมี่ สุดหล่อ" , 999 ),
+				new Menu( 3 , "เจมมี่ หล่อสุดๆ" , 999 ),
+				new Menu( 4 , "เจมมี่ ผญ กรี๊ดกร๊าด" , 999 )
+				);
+		table = list;
 	}
-	
+
 	@FXML private JFXButton test;
 
 	@FXML private HBox hBox;
