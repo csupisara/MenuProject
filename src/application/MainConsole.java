@@ -11,10 +11,10 @@ public class MainConsole {
 
 	public static void main(String[]args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
 //		UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-		MenuBook menuBook = new MenuBook("EngMenu.csv");
-		ConsoleUI UI = new ConsoleUI( menuBook );
-		JamieGUI jamieGUI = new JamieGUI( UI );
-		UI.addObserver( jamieGUI );
+//		MenuBook menuBook = new MenuBook("EngMenu.csv");
+//		ConsoleUI UI = new ConsoleUI( menuBook );
+//		JamieGUI jamieGUI = new JamieGUI( UI );
+//		UI.addObserver( jamieGUI );
 	}
 
 }

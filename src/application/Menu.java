@@ -34,20 +34,4 @@ public class Menu {
 		return menuAmount.get();
 	}
 	
-//	public void setAmount( int n ) {
-//		menuAmount.set( n );
-//	}
-//	
-//	public void addAmountByOne() {
-//		menuAmount.set( menuAmount.get()+1 );
-//	}
-//	
-//	public String toString() {
-//		return String.format( "ID: %-3d ,  %s Amount: %-5d --> %d Baht." , menuID , menuName , getAmount() , getAmount()*menuPrice.get() );
-//	}
-//	
-//	public String toShowFirstTime() {
-//		return String.format( "ID: %-3d , %-20s , %d Baht." , menuID , menuName , menuPrice );
-//	}
-	
 }

@@ -61,46 +61,46 @@ public class ConsoleUI extends Observable {
 		return s;
 	}
 
-	public int getTotalCost() {
-		int x = 0;
-		for( Menu y : orderList) {
-			x = x + (y.getMenuCost()*y.getAmount()) ;
-		}
-		return x;
-	}
+//	public int getTotalCost() {
+//		int x = 0;
+//		for( Menu y : orderList) {
+//			x = x + (y.getMenuCost()*y.getAmount()) ;
+//		}
+//		return x;
+//	}
 
-	public int getTotalAmount() {
-		int x = 0;
-		for( Menu y : orderList ) {
-			x = x + y.getAmount();
-		}
-		return x;
-	}
+//	public int getTotalAmount() {
+//		int x = 0;
+//		for( Menu y : orderList ) {
+//			x = x + y.getAmount();
+//		}
+//		return x;
+//	}
 
-	public void setNewOrderList() {
-		orderList.clear();
-		menuBook.resetMenu();
-		setChanged();
-		notifyObservers();
-	}
+//	public void setNewOrderList() {
+//		orderList.clear();
+//		menuBook.resetMenu();
+//		setChanged();
+//		notifyObservers();
+//	}
 
-	public void setAmountMenuInOrderList( int ID , int amount ) {
-		if( orderList.contains( menuBook.getAllMenuList().get( ID ) ) ) {
-			int indexInOrderList = orderList.indexOf( menuBook.getAllMenuList().get( ID ) );
-			orderList.get( indexInOrderList ).setAmount( amount );
-		}
-		else {
-				orderList.add( menuBook.getAllMenuList().get( ID ) );				
-		}
-		setChanged();
-		notifyObservers();
-	}
+//	public void setAmountMenuInOrderList( int ID , int amount ) {
+//		if( orderList.contains( menuBook.getAllMenuList().get( ID ) ) ) {
+//			int indexInOrderList = orderList.indexOf( menuBook.getAllMenuList().get( ID ) );
+//			orderList.get( indexInOrderList ).setAmount( amount );
+//		}
+//		else {
+//				orderList.add( menuBook.getAllMenuList().get( ID ) );				
+//		}
+//		setChanged();
+//		notifyObservers();
+//	}
 	
-	public void deleteMenuInOrderList( int ID ) {
-		int indexDelete = orderList.indexOf( menuBook.getAllMenuList().get(ID) );
-		orderList.remove( indexDelete );
-		setChanged();
-		notifyObservers();
-	}
+//	public void deleteMenuInOrderList( int ID ) {
+//		int indexDelete = orderList.indexOf( menuBook.getAllMenuList().get(ID) );
+//		orderList.remove( indexDelete );
+//		setChanged();
+//		notifyObservers();
+//	}
 
 }
