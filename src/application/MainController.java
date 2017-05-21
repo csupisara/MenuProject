@@ -17,8 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
@@ -30,12 +28,9 @@ import javafx.scene.layout.HBox;
 
 public class MainController extends Observable implements Initializable, Observer{
 	
-	ObservableList<Menu> list;
+	private ObservableList<Menu> list;
 	private MenuBook menuBook;
-	public ConsoleUI consoleUI = new ConsoleUI(menuBook);
-
-	
-
+	private ConsoleUI consoleUI = new ConsoleUI(menuBook);
 	public ObservableList<Menu> table;
 	
 	@FXML private TableView<Menu> confirmTableView;
@@ -49,6 +44,9 @@ public class MainController extends Observable implements Initializable, Observe
 	@FXML private TableColumn<Menu, Integer> statusTableColumn3;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn4;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn5;
+	@FXML private Button clear;
+	@FXML private Button confirm;
+	@FXML private Button checkbill;
 
 	public MainController() {
 		try {
@@ -71,7 +69,7 @@ public class MainController extends Observable implements Initializable, Observe
 
 	public void menu( MenuBook menuBook ) {
 		this.menuBook = menuBook;
-		ObservableList<Menu> list = FXCollections.observableArrayList( menuBook.getAllMenuList() );
+		list = FXCollections.observableArrayList( menuBook.getAllMenuList() );
 		table = list;
 	}
 
@@ -100,24 +98,22 @@ public class MainController extends Observable implements Initializable, Observe
 
 	@FXML private AnchorPane totalPane;
 
-	@FXML
-	private Button confirm;
+	
 	public void confirm(ActionEvent event){
 	}
 
-	@FXML
-	private Button clear;
+	
 	public void clear(ActionEvent event){
+		consoleUI.clearOrderList();
+		menuBook.resetMenu();
+		setChanged();
 		notifyObservers();
 	}
 
-	@FXML
-	private Button checkbill;
+	
 	public void checkbill(ActionEvent event){
 
 	}
-
-	@FXML private ScrollBar scrollbar;
 
 	@FXML
 	private Label totalLabel;
@@ -135,7 +131,8 @@ public class MainController extends Observable implements Initializable, Observe
 
 	@Override
 	public void update(Observable o, Object arg) {
-		consoleUI.deleteMenuInOrderList(1);
+		consoleUI.deleteAllMenuInOrderList();
+		
 	}
 
 

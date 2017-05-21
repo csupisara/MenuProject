@@ -111,5 +111,9 @@ public class ConsoleUI extends Observable {
 		setChanged();
 		notifyObservers();
 	}
+	
+	public void clearOrderList(){
+		orderList.clear();
+	}
 
 }
