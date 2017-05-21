@@ -11,7 +11,7 @@ public class ConsoleUI extends Observable {
 		orderList = new ArrayList<Menu>();
 	}
 
-	public int getCapacityOfMenu() {
+	public int getCapacityOfMenuBook() {
 		return menuBook.getCapacity();
 	}
 
@@ -25,10 +25,11 @@ public class ConsoleUI extends Observable {
 
 	public void AddToOrderList( Menu menu ) {
 		if( orderList.contains( menu ) ) {
-			orderList.remove( menu );
-			orderList.add( menu );
+			int indexOfThatMenu = orderList.indexOf( menu );
+			orderList.get( indexOfThatMenu ).addOneAmount();
 		}
 		else {
+			menu.addOneAmount();
 			orderList.add( menu );
 		}
 		Collections.sort( orderList , new Comparator<Menu>() {
@@ -48,72 +49,28 @@ public class ConsoleUI extends Observable {
 
 
 		} );
-		setChanged();
-		notifyObservers();
-		System.out.println( toStringFromOrderList() );
 	}
 
-	public String toStringFromOrderList() {
-		String s = "";
-		for( Menu x : orderList ) {
-			s = s.concat( " "+x.toString()+"\n" );
+	public int getTotalCost() {
+		int total = 0;
+		for( Menu eachMenu : orderList) {
+			total = total + ( (eachMenu.getMenuAmount())*(eachMenu.getMenuCost()) );
 		}
-		return s;
+		return total;
 	}
 
-//	public int getTotalCost() {
-//		int x = 0;
-//		for( Menu y : orderList) {
-//			x = x + (y.getMenuCost()*y.getAmount()) ;
-//		}
-//		return x;
-//	}
-
-//	public int getTotalAmount() {
-//		int x = 0;
-//		for( Menu y : orderList ) {
-//			x = x + y.getAmount();
-//		}
-//		return x;
-//	}
-
-//	public void setNewOrderList() {
-//		orderList.clear();
-//		menuBook.resetMenu();
-//		setChanged();
-//		notifyObservers();
-//	}
-
-//	public void setAmountMenuInOrderList( int ID , int amount ) {
-//		if( orderList.contains( menuBook.getAllMenuList().get( ID ) ) ) {
-//			int indexInOrderList = orderList.indexOf( menuBook.getAllMenuList().get( ID ) );
-//			orderList.get( indexInOrderList ).setAmount( amount );
-//		}
-//		else {
-//				orderList.add( menuBook.getAllMenuList().get( ID ) );				
-//		}
-//		setChanged();
-//		notifyObservers();
-//	}
-	
-	public void deleteMenuInOrderList( int ID ) {
-		int indexDelete = orderList.indexOf( menuBook.getAllMenuList().get(ID) );
-		orderList.remove( indexDelete );
-		setChanged();
-		notifyObservers();
-	}
-	
-	public void deleteAllMenuInOrderList() {
-		for(Menu m : orderList){
-			orderList.remove(m);
+	public int getTotalAmount() {
+		int amount = 0;
+		for( Menu eachMenu : orderList ) {
+			amount = amount + eachMenu.getMenuAmount();
 		}
-
-		setChanged();
-		notifyObservers();
+		return amount;
 	}
 	
 	public void clearOrderList(){
 		orderList.clear();
+		menuBook.resetMenu();
 	}
 
 }
+

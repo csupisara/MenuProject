@@ -11,7 +11,6 @@ public class Menu {
 	private SimpleIntegerProperty menuAmount;
 	
 	public Menu( int inputMenuNum , String inputName , int inputPrice ) {
-		super();
 		this.menuID = new SimpleIntegerProperty( inputMenuNum );
 		this.menuName = new SimpleStringProperty( inputName );
 		this.menuCost = new SimpleIntegerProperty( inputPrice );
@@ -32,6 +31,19 @@ public class Menu {
 	
 	public int getMenuAmount() {
 		return menuAmount.get();
+	}
+	
+	public void addOneAmount() {
+		menuAmount.set( menuAmount.get()+1 );
+	}
+	
+	public String toString() {
+		int id = menuID.get();
+		String name = menuName.get();
+		int cost = menuCost.get();
+		int amount = menuCost.get();
+		String sentence = ("ID: "+id+", Name: "+name+", Cost: "+cost+", Amount: "+amount) ;
+		return sentence;
 	}
 	
 }
