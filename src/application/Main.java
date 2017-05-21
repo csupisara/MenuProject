@@ -1,10 +1,5 @@
 package application;
-<<<<<<< HEAD
-import javafx.*;
-import javafx.fxml.Initializable;
-=======
 
->>>>>>> a5e547dc4986a29f2ba1bc72c9c02d1e15eadc80
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -20,16 +15,6 @@ import javafx.scene.layout.HBox;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-
-		//BorderPane root = new BorderPane();
-
-//		Image image = new Image(getClass().getResourceAsStream("sushi.jpg"));
-//
-//		Button button = new Button("Naoki", new ImageView(image));
-//
-//		button.setOnAction(e -> System.out.println("naoki"));
-//		HBox layout = new HBox();
-//		layout.getChildren().addAll(button);
 
 		try {
 			Parent root = FXMLLoader.load(ClassLoader.getSystemResource("application/MyMain.fxml"));
