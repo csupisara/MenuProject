@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuBook {
@@ -15,30 +16,33 @@ public class MenuBook {
 
 	private String readLine;
 	private int capacity = 0;
+	private String fileName;
 
 	private List<Menu> list;
 	private List<Integer> readID;
 	private List<String> readMenu;
 	private List<Integer> readPrice;
 
-	public MenuBook( String name ) {
+	public MenuBook( String fileName ) {
 		try {
+			this.fileName = fileName;
 			list = new ArrayList<Menu>();
 			readID = new ArrayList<Integer>();
 			readMenu = new ArrayList<String>();
 			readPrice = new ArrayList<Integer>();
-			inputStream = new FileInputStream( name );
-			buffReader = new BufferedReader( new InputStreamReader( inputStream ) );
-			createMenu();	
+			createMenu( fileName );	
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}
 	}
 
-	private void createMenu() {
+	private void createMenu(String inputFileName) {
 		try {
+			inputStream = new FileInputStream( inputFileName );
+			buffReader = new BufferedReader( new InputStreamReader( inputStream ) );
+
 			readLine = buffReader.readLine();
-			
+
 			while( readLine!=null ) {
 				String[] tempBox = readLine.split( "," );
 				int id = Integer.parseInt( tempBox[0].trim() );
@@ -54,7 +58,6 @@ public class MenuBook {
 				list.add( new Menu( readID.get(i) , readMenu.get(i) , readPrice.get(i) ) );
 				capacity++;
 			}
-
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}
@@ -94,7 +97,10 @@ public class MenuBook {
 
 	public void resetMenu() {
 		list.clear();
-		createMenu();
+		readID.clear();
+		readMenu.clear();
+		readPrice.clear();
+		createMenu( fileName );
 	}
-	
+
 }

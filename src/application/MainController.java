@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -26,24 +27,26 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class MainController extends Observable implements Initializable, Observer{
-	
+public class MainController implements Initializable {
+
 	private ObservableList<Menu> list;
 	private MenuBook menuBook;
-	private ConsoleUI consoleUI = new ConsoleUI(menuBook);
+	private ConsoleUI consoleUI;
 	public ObservableList<Menu> table;
-	
+
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn3;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn4;
+	
 	@FXML private TableView<Menu> statusTableView;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn1;
 	@FXML private TableColumn<Menu, String> statusTableColumn2;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn3;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn4;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn5;
+	
 	@FXML private Button clear;
 	@FXML private Button confirm;
 	@FXML private Button checkbill;
@@ -60,13 +63,19 @@ public class MainController extends Observable implements Initializable, Observe
 
 	public MainController() {
 		try {
-			MenuBook menuBook = new MenuBook( "EngMenu.csv" );
-			menu( menuBook );
+			menuBook = new MenuBook( "EngMenu.csv" );
+			consoleUI = new ConsoleUI( menuBook );
+			menu();
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}
 	}
 
+	private void menu() {
+		list = FXCollections.observableArrayList( consoleUI.getOrderList() );
+		table = list;
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
@@ -76,21 +85,37 @@ public class MainController extends Observable implements Initializable, Observe
 		confirmTableView.setItems(table);
 	}
 
-	public void menu( MenuBook menuBook ) {
-		this.menuBook = menuBook;
-		list = FXCollections.observableArrayList( menuBook.getAllMenuList() );
-		table = list;
-	}
+	@FXML private HBox hBox;
 
-	
+	@FXML private TabPane tabPane;
+
+	@FXML private ButtonBar naokiButton;
+
+	@FXML private ImageView naoki;
+
+	@FXML private AnchorPane confirmPane;
+
+	@FXML private AnchorPane confirmTablePane;
+
+	@FXML private AnchorPane totalPane;
+
 	public void confirm(ActionEvent event){
+
 	}
 
 	public void clear(ActionEvent event){
 		consoleUI.clearOrderList();
-		menuBook.resetMenu();
-		setChanged();
-		notifyObservers();
+		updateDisplay();
+	}
+
+	public void updateDisplay() {
+		list = FXCollections.observableArrayList( consoleUI.getOrderList() );
+		table = list;
+		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
+		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
+		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
+		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
+		confirmTableView.setItems(table);
 	}
 
 	public void clickMenu(ActionEvent event){
@@ -121,11 +146,5 @@ public class MainController extends Observable implements Initializable, Observe
 	@FXML private Label menuName;
 
 	@FXML private Label price;
-
-	@Override
-	public void update(Observable o, Object arg) {
-		consoleUI.deleteAllMenuInOrderList();
-	}
-
 
 }
