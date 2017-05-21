@@ -31,8 +31,11 @@ import javafx.scene.layout.HBox;
 public class MainController extends Observable implements Initializable, Observer{
 	
 	ObservableList<Menu> list;
-	MenuBook menuBook = new MenuBook("EngMenu.csv");
+	private MenuBook menuBook;
 	public ConsoleUI consoleUI = new ConsoleUI(menuBook);
+
+	
+
 	public ObservableList<Menu> table;
 	
 	@FXML private TableView<Menu> confirmTableView;
@@ -47,27 +50,28 @@ public class MainController extends Observable implements Initializable, Observe
 	@FXML private TableColumn<Menu, Integer> statusTableColumn4;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn5;
 
-	public MainController() throws IOException {
-		menu();
+	public MainController() {
+		try {
+			MenuBook menuBook = new MenuBook( "EngMenu.csv" );
+			menu( menuBook );
+		} catch( Exception ex ) {
+			ex.printStackTrace();
+		}
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
-		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
-		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
+		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
+		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
 
 		confirmTableView.setItems(table);
 	}
 
-	public void menu() throws IOException{
-		list = FXCollections.observableArrayList(
-				new Menu( 1 , "เจมมี่" , 999 ),
-				new Menu( 2 , "เจมมี่ สุดหล่อ" , 999 ),
-				new Menu( 3 , "เจมมี่ หล่อสุดๆ" , 999 ),
-				new Menu( 4 , "เจมมี่ ผญ กรี๊ดกร๊าด" , 999 )
-				);
+	public void menu( MenuBook menuBook ) {
+		this.menuBook = menuBook;
+		ObservableList<Menu> list = FXCollections.observableArrayList( menuBook.getAllMenuList() );
 		table = list;
 	}
 

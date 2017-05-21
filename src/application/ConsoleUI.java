@@ -77,12 +77,12 @@ public class ConsoleUI extends Observable {
 //		return x;
 //	}
 
-	public void setNewOrderList() {
-		orderList.clear();
-		menuBook.resetMenu();
-		setChanged();
-		notifyObservers();
-	}
+//	public void setNewOrderList() {
+//		orderList.clear();
+//		menuBook.resetMenu();
+//		setChanged();
+//		notifyObservers();
+//	}
 
 //	public void setAmountMenuInOrderList( int ID , int amount ) {
 //		if( orderList.contains( menuBook.getAllMenuList().get( ID ) ) ) {
