@@ -119,6 +119,10 @@ public class MainController implements Initializable {
 	}
 
 	@FXML private ScrollBar scrollbar;
+	public void ScrollBar() {
+		scrollbar = new ScrollBar();
+		
+	}
 
 	@FXML
 	private Label totalLabel;
