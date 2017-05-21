@@ -47,6 +47,16 @@ public class MainController extends Observable implements Initializable, Observe
 	@FXML private Button clear;
 	@FXML private Button confirm;
 	@FXML private Button checkbill;
+	@FXML private Button button1;
+	@FXML private Button button2;
+	@FXML private Button button3;
+	@FXML private Button button4;
+	@FXML private Button button5;
+	@FXML private Button button6;
+	@FXML private Button button7;
+	@FXML private Button button8;
+	@FXML private Button button9;
+	@FXML private Button button10;
 
 	public MainController() {
 		try {
@@ -63,7 +73,6 @@ public class MainController extends Observable implements Initializable, Observe
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
-
 		confirmTableView.setItems(table);
 	}
 
@@ -73,36 +82,10 @@ public class MainController extends Observable implements Initializable, Observe
 		table = list;
 	}
 
-	@FXML private JFXButton test;
-
-	@FXML private HBox hBox;
-
-	@FXML private TabPane tabPane;
-
-	@FXML //Acts as a wire that connect the FXML file with MainController.
-	private Tab menuTab;
-
-	@FXML private ButtonBar naokiButton;
-
-	@FXML private ImageView naoki;
-
-	@FXML private Label menuName;
-
-	@FXML private Label price;
-
-	@FXML private AnchorPane confirmPane;
-
-	@FXML private AnchorPane confirmTablePane;
-
-	
-
-	@FXML private AnchorPane totalPane;
-
 	
 	public void confirm(ActionEvent event){
 	}
 
-	
 	public void clear(ActionEvent event){
 		consoleUI.clearOrderList();
 		menuBook.resetMenu();
@@ -110,24 +93,34 @@ public class MainController extends Observable implements Initializable, Observe
 		notifyObservers();
 	}
 
+	public void clickMenu(ActionEvent event){
+		System.out.println("ccc");
+		System.out.println(event.toString());
+		
+	}
 	
 	public void checkbill(ActionEvent event){
 
 	}
 
-	@FXML
-	private Label totalLabel;
 	public void totalLabel(){
 		menuTableColumn3.getText();
 	}
 
+	@FXML private Label totalLabel;
 	@FXML private Label itemLabel;
 
 	@FXML private Tab statusTab;
 
-	@FXML private AnchorPane statusPane;
-
 	@FXML private ProgressIndicator progress;
+	
+	@FXML private JFXButton test;
+
+	@FXML private Tab menuTab;
+
+	@FXML private Label menuName;
+
+	@FXML private Label price;
 
 	@Override
 	public void update(Observable o, Object arg) {
