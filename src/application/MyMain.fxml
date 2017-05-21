@@ -16,6 +16,7 @@
 
 <AnchorPane fx:id="programPane" prefHeight="500" prefWidth="700" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
+   
       <TabPane fx:id="tabPane" prefHeight="500.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab fx:id="menuTab" text="MENU">
@@ -56,7 +57,7 @@
                                             </columns>
                                           </TableView>
                                        </children>
-                                    </AnchorPane>
+                                    </AnchorPane>         
                                   <AnchorPane fx:id="totalPane" minHeight="0.0" minWidth="0.0" prefHeight="228.0" prefWidth="310.0">
                                        <children>
                                           <JFXButton fx:id="confirm" layoutX="24.0" layoutY="123.0" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
@@ -64,7 +65,7 @@
                                           <Label fx:id="totalLabel" layoutX="118.0" layoutY="93.0" prefHeight="17.0" prefWidth="89.0" text="TOTAL: 0" />
                                           <JFXButton fx:id="clear" layoutX="187.0" layoutY="123.0" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                        </children>
-                                    </AnchorPane>
+                                    </AnchorPane>        
                                 </items>
                               </SplitPane>
                            </children>
@@ -93,5 +94,6 @@
           </Tab>
         </tabs>
       </TabPane>
+      
    </children>
 </AnchorPane>
