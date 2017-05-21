@@ -47,7 +47,7 @@
                            <left>
                               <AnchorPane fx:id="allMenuPane" prefHeight="436.0" prefWidth="273.0" style="-fx-background-color: #dcdcdc;" BorderPane.alignment="CENTER">
                                  <children>
-                                    <ScrollBar fx:id="scrollbar" layoutX="267.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="441.0" prefWidth="17.0" />
+                                    <ScrollBar layoutX="267.0" layoutY="-3.0" orientation="VERTICAL" prefHeight="441.0" prefWidth="17.0" />
                                     <VBox layoutX="32.0" layoutY="15.0" prefHeight="188.0" prefWidth="200.0">
                                        <children>
                                           <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
@@ -99,7 +99,7 @@
                                               <TableColumn fx:id="menuTableColumn1" prefWidth="26.409637451171875" text="#" />
                                               <TableColumn fx:id="menuTableColumn2" prefWidth="279.1838684082031" text="name" />
                                                 <TableColumn fx:id="menuTableColumn3" minWidth="2.37347412109375" prefWidth="62.816162109375" text="quantity" />
-                                                <TableColumn fx:id="menuTableColumn4" prefWidth="46.81622314453125" text="price" />
+                                                <TableColumn prefWidth="46.81622314453125" text="price" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -108,10 +108,10 @@
                                  <bottom>
                                   <AnchorPane fx:id="totalPane" minHeight="0.0" minWidth="0.0" prefHeight="52.0" prefWidth="416.0" BorderPane.alignment="CENTER">
                                        <children>
-                                          <JFXButton fx:id="confirm" layoutX="228.0" layoutY="6.0" onAction="#confirm" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <JFXButton fx:id="confirm" layoutX="228.0" layoutY="6.0" ripplerFill="WHITE" style="-fx-background-color: #008b8b;" text="CONFIRM" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                           <Label fx:id="itemLabel" layoutX="15.0" layoutY="11.0" prefHeight="17.0" prefWidth="87.0" text="ITEM: 0" />
                                           <Label fx:id="totalLabel" layoutX="102.0" layoutY="11.0" prefHeight="17.0" prefWidth="89.0" text="TOTAL: 0" />
-                                          <JFXButton fx:id="clear" layoutX="329.0" layoutY="6.0" onAction="#clear" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                          <JFXButton fx:id="clear" layoutX="329.0" layoutY="6.0" ripplerFill="WHITE" style="-fx-background-color: #b22222;" text="CLEAR" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
                                        </children>
                                     </AnchorPane>
                                  </bottom>
@@ -124,23 +124,29 @@
                   <content>
                     <AnchorPane fx:id="statusPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ProgressIndicator fx:id="progress" layoutX="508.0" layoutY="27.0" prefHeight="60.0" prefWidth="52.0" progress="0.0" style="-fx-background-color: #ffd700;" />
-                              <TableView prefHeight="467.0" prefWidth="492.0">
-                                 <columns>
-                                    <TableColumn fx:id="statusTableColumn1" prefWidth="24.010238647460938" text="#" />
-                                    <TableColumn fx:id="statusTableColumn2" prefWidth="251.9897575378418" text="name" />
-                                    <TableColumn fx:id="statusTableColumn3" minWidth="2.37347412109375" prefWidth="68.81535339355469" text="quantity" />
-                                    <TableColumn fx:id="statusTableColumn4" prefWidth="57.80799865722656" text="price" />
-                                    <TableColumn fx:id="statusTableColumn5" prefWidth="90.78305053710938" text="cook" />
-                                 </columns>
-                              </TableView>
-                              <Pane layoutX="487.0" layoutY="104.0" prefHeight="200.0" prefWidth="200.0">
-                                 <children>
-                                    <JFXTextField layoutX="28.0" layoutY="91.0" prefHeight="25.0" prefWidth="87.0" text="MEMBER ID :" />
-                                    <JFXPasswordField layoutX="17.0" layoutY="131.0" prefHeight="25.0" prefWidth="133.0" />
-                                 </children>
-                              </Pane>
-                              <JFXButton fx:id="checkbill" layoutX="551.0" layoutY="350.0" onAction="#checkbill" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                              <BorderPane prefHeight="436.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <left>
+                                    <TableView prefHeight="422.0" prefWidth="492.0" BorderPane.alignment="CENTER">
+                                       <columns>
+                                          <TableColumn fx:id="statusTableColumn1" prefWidth="24.010238647460938" text="#" />
+                                          <TableColumn fx:id="statusTableColumn2" prefWidth="251.9897575378418" text="name" />
+                                          <TableColumn fx:id="statusTableColumn3" minWidth="2.37347412109375" prefWidth="68.81535339355469" text="quantity" />
+                                          <TableColumn fx:id="statusTableColumn4" prefWidth="57.80799865722656" text="price" />
+                                          <TableColumn fx:id="statusTableColumn5" prefWidth="90.78305053710938" text="cook" />
+                                       </columns>
+                                    </TableView>
+                                 </left>
+                                 <right>
+                                    <Pane prefHeight="369.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <JFXTextField layoutX="28.0" layoutY="91.0" prefHeight="25.0" prefWidth="87.0" text="MEMBER ID :" />
+                                          <JFXPasswordField layoutX="17.0" layoutY="131.0" prefHeight="25.0" prefWidth="133.0" />
+                                          <ProgressIndicator fx:id="progress" layoutX="58.0" layoutY="211.0" prefHeight="60.0" prefWidth="52.0" progress="0.0" style="-fx-background-color: #ffd700;" />
+                                          <JFXButton fx:id="checkbill" layoutX="53.0" layoutY="350.0" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" />
+                                       </children>
+                                    </Pane>
+                                 </right>
+                              </BorderPane>
                            </children>
                         </AnchorPane>
                   </content>
