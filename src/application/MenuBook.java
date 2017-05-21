@@ -31,7 +31,7 @@ public class MenuBook {
 		createMenu();
 	}
 
-	public void createMenu() throws IOException {
+	private void createMenu() throws IOException {
 		readLine = buffReader.readLine();
 		while( readLine!=null ) {
 			String[] tempBox = readLine.split( "," );
