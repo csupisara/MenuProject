@@ -22,7 +22,7 @@ public class Menu {
 	}
 	
 	public int getMenuCost() {
-		return menuCost.get();
+		return menuCost.get()*menuAmount.get();
 	}
 	
 	public int getMenuID() {
@@ -35,6 +35,10 @@ public class Menu {
 	
 	public void addOneAmount() {
 		menuAmount.set( menuAmount.get()+1 );
+	}
+	
+	public void addManyAmount(int n) {
+		menuAmount.set( menuAmount.get()+n );
 	}
 	
 	public String toString() {
