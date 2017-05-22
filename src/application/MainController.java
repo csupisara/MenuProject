@@ -12,16 +12,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.ArrayList;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,6 +40,7 @@ public class MainController implements Initializable {
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
+	private int billNumber = 1;
 
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1, menuTableColumn3, menuTableColumn4;
@@ -171,26 +169,25 @@ public class MainController implements Initializable {
 		itemLabel.setText("ITEM: " + numAmountItem);
 	}
 
-//	public static void saveToFile(String fileName, ArrayList list){
-//		Path filePath = Paths.get(fileName);
-//		try{
-//			Files.write(filePath, list, Charset.defaultCharset());		
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
-//	}
-
-	public void checkbill(ActionEvent event) throws IOException{
+	public void checkbill(ActionEvent event) {
 		try {
-			String date = LocalDate.now().toString();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(date+".txt"));
-			writer.write(Arrays.toString(consoleUI.getConfirmList().toArray()));
-			writer.write("test");
+			String today = LocalDate.now().toString();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber+" - "+today+".txt"));
+			writer.write("Bill No."+billNumber+" \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
+			for( Menu x : consoleUI.getConfirmList() ){
+				writer.write( x.toString() + "\n");
+			}
+			writer.write("\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU");
 			writer.close();
-		} catch (IOException e) {
+			billNumber++;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println(Arrays.toString(consoleUI.getConfirmList().toArray()));
+		consoleUI.clearOrderList();
+		consoleUI.clearConfirmList();
+		setTotalCost( 0 );
+		setTotalItem( 0 );
+		updateDisplay();
 	}
 	
 	@FXML private ProgressIndicator progress;
