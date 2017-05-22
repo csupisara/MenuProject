@@ -23,7 +23,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
@@ -33,6 +32,7 @@ public class MainController implements Initializable {
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
 	public ObservableList<Menu> table;
+	int total,item = 0;
 
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1;
@@ -60,6 +60,7 @@ public class MainController implements Initializable {
 	@FXML private Button button8;
 	@FXML private Button button9;
 	@FXML private Button button10;
+	@FXML private Label totalLabel, itemLabel;
 
 	public MainController() {
 		try {
@@ -89,10 +90,6 @@ public class MainController implements Initializable {
 
 	@FXML private TabPane tabPane;
 
-	@FXML private ButtonBar naokiButton;
-
-	@FXML private ImageView naoki;
-
 	@FXML private AnchorPane confirmPane;
 
 	@FXML private AnchorPane confirmTablePane;
@@ -106,11 +103,14 @@ public class MainController implements Initializable {
 	public void clear(ActionEvent event){
 		consoleUI.clearOrderList();
 		updateDisplay();
+		item = 0;
+		setItem(item);
+		total = 0;
+		setTotal(total);
 	}
 
 	public void updateDisplay() {
-		list = FXCollections.observableArrayList( consoleUI.getOrderList() );
-		table = list;
+		menu();
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
@@ -121,20 +121,28 @@ public class MainController implements Initializable {
 	public void clickMenu(ActionEvent event){
 		System.out.println("ccc");
 		System.out.println(event.toString());
-		
+		totalLabel();
+		setItem(item);
 	}
 	
 	public void checkbill(ActionEvent event){
-
+		
 	}
 
 	public void totalLabel(){
-		menuTableColumn3.getText();
+		total += Integer.parseInt(menuTableColumn3.getText());
+		setTotal(total);
+	}
+	
+	public void setTotal(int total){
+		totalLabel.setText("TOTAL: " + total);
+	}
+	
+	public void setItem(int item){
+		itemLabel.setText("ITEM: " + item++);
 	}
 
-	@FXML private Label totalLabel;
-	
-	@FXML private Label itemLabel;
+
 
 	@FXML private Tab statusTab;
 
