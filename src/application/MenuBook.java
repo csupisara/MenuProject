@@ -16,7 +16,7 @@ public class MenuBook {
 	private int capacity = 0;
 	private String fileName;
 
-	private List<Menu> list;
+	private ArrayList<Menu> list;
 	private List<Integer> readID;
 	private List<String> readMenu;
 	private List<Integer> readPrice;
@@ -61,7 +61,7 @@ public class MenuBook {
 		}
 	}
 
-	public List<Menu> getAllMenuList() {
+	public ArrayList<Menu> getAllMenuList() {
 		return list;
 	}
 

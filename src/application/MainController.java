@@ -2,9 +2,11 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -15,7 +17,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.control.Tab;
@@ -36,11 +37,11 @@ public class MainController implements Initializable {
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1, menuTableColumn3, menuTableColumn4;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
-	
+
 	@FXML private TableView<Menu> statusTableView;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4, statusTableColumn5;
 	@FXML private TableColumn<Menu, String> statusTableColumn2;
-	
+
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
@@ -59,12 +60,12 @@ public class MainController implements Initializable {
 		list = FXCollections.observableArrayList( consoleUI.getOrderList() );
 		table = list;
 	}
-	
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCell();
 	}
-	
+
 	public void setCell(){
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
@@ -124,11 +125,11 @@ public class MainController implements Initializable {
 		Object choosenButton = event.getSource();
 		return choosenButton.equals( button ) ;
 	}
-	
+
 	public void addOrder(int index){
 		consoleUI.AddToOrderList( menuBook.getAllMenuList().get( index ) );
 	}
-	
+
 	public int callCost(int index){
 		return menuBook.getAllMenuList().get(index).getMenuCost();
 	}
@@ -137,20 +138,30 @@ public class MainController implements Initializable {
 		total += cost;
 		setTotal(total);
 	}
-	
+
 	public void setTotal(int total){
 		totalLabel.setText("TOTAL: " + total);
 	}
-	
+
 	public void setItem(int item){
 		itemLabel.setText("ITEM: " + item);
 	}
 
-	public void checkbill(ActionEvent event){
-		
+	public static void saveToFile(String fileName, ArrayList list){
+		Path filePath = Paths.get(fileName);
+		try{
+			Files.write(filePath, list, Charset.defaultCharset());		
+		}catch(IOException e){
+			e.printStackTrace();
+		}
 	}
-	@FXML private ProgressIndicator progress;
+
+	public void checkbill(ActionEvent event){
+		saveToFile("bill.txt", menuBook.getAllMenuList());
+	}
 	
+	@FXML private ProgressIndicator progress;
+
 	@FXML private JFXButton test;
 
 	@FXML private Tab menuTab;
