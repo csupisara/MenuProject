@@ -90,7 +90,9 @@ public class MainController implements Initializable {
 	@FXML private AnchorPane totalPane;
 
 	public void confirm(ActionEvent event){
-
+		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
+		consoleUI.clearOrderList();
+		updateDisplay();
 	}
 
 	public void clear(ActionEvent event){
