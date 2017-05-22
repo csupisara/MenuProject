@@ -1,2 +1,0 @@
-[ID: 1, Name: "Tom Yum Gung" , Cost: 200, Amount: 1
-]

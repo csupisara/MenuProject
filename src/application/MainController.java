@@ -10,10 +10,12 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
@@ -180,7 +182,8 @@ public class MainController implements Initializable {
 
 	public void checkbill(ActionEvent event) throws IOException{
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(".\\bill.txt"));
+			String date = LocalDate.now().toString();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(date+".txt"));
 			writer.write(Arrays.toString(consoleUI.getConfirmList().toArray()));
 			writer.write("test");
 			writer.close();
