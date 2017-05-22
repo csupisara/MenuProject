@@ -37,7 +37,6 @@ public class MainController implements Initializable {
 	private ObservableList<Menu> list, table;
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
-	int total,item = 0;
 
 	@FXML private TableView<Menu> confirmTableView;
 	@FXML private TableColumn<Menu, Integer> menuTableColumn1, menuTableColumn3, menuTableColumn4;
@@ -98,13 +97,11 @@ public class MainController implements Initializable {
 	public void clear(ActionEvent event){
 		consoleUI.clearConfirmList();
 		updateDisplay();
-		item = 0;
-		setItem(item);
-		total = 0;
-		setTotal(total);
 	}
 
 	public void updateDisplay() {
+		findTotalItem();
+		findTotalCost();
 		menu();
 		setCell();
 	}
@@ -121,11 +118,8 @@ public class MainController implements Initializable {
 		else if( isButton(event, button8) ) index = 7;
 		else if( isButton(event, button9) ) index = 8;
 		else if( isButton(event, button10) ) index = 9;
-		addOrder(index);
-		totalLabel(callCost(index));
+		addOrder( index );
 		updateDisplay();
-		item++;
-		setItem(item);
 	}
 
 	public boolean isButton(ActionEvent event, Button button){
@@ -141,17 +135,29 @@ public class MainController implements Initializable {
 		return menuBook.getAllMenuList().get(index).getMenuCost();
 	}
 
-	public void totalLabel(int cost){
-		total += cost;
-		setTotal(total);
+	public void findTotalItem() {
+		int totalItem = consoleUI.getTotalAmountInConfirmList();
+		for( Menu eachMenu : consoleUI.getOrderList()) {
+			totalItem = totalItem + eachMenu.getMenuAmount();
+		}
+		setTotalItem( totalItem );
+	}
+	
+	public void findTotalCost(){
+		int totalCost = consoleUI.getTotalCostInConfirmList();
+		for( Menu eachMenu : consoleUI.getOrderList() ) {
+			totalCost = totalCost + eachMenu.getMenuCost();
+		}
+		setTotalCost( totalCost );
 	}
 
-	public void setTotal(int total){
-		totalLabel.setText("TOTAL: " + total);
+	
+	public void setTotalCost(int numTotalCost){
+		totalLabel.setText("TOTAL: " + numTotalCost);
 	}
-
-	public void setItem(int item){
-		itemLabel.setText("ITEM: " + item);
+	
+	public void setTotalItem(int numAmountItem){
+		itemLabel.setText("ITEM: " + numAmountItem);
 	}
 
 	public static void saveToFile(String fileName, ArrayList list){

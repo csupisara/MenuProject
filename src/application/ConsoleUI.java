@@ -90,7 +90,7 @@ public class ConsoleUI extends Observable {
 	public int getTotalCostInOrderList() {
 		int total = 0;
 		for( Menu eachMenu : orderList) {
-			total = total + ( (eachMenu.getMenuAmount())*(eachMenu.getMenuCost()) );
+			total = total + ( eachMenu.getMenuCost() );
 		}
 		return total;
 	}
@@ -98,7 +98,7 @@ public class ConsoleUI extends Observable {
 	public int getTotalCostInConfirmList() {
 		int total = 0;
 		for( Menu eachMenu : confirmList ) {
-			total = total + ( (eachMenu.getMenuAmount())*(eachMenu.getMenuCost()) );
+			total = total + ( eachMenu.getMenuCost() );
 		}
 		return total;
 	}
