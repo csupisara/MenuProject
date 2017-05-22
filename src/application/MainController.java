@@ -29,7 +29,7 @@ import javafx.scene.layout.HBox;
 
 public class MainController implements Initializable {
 
-	private ObservableList<Menu> list, table;
+	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
 
@@ -56,8 +56,11 @@ public class MainController implements Initializable {
 	}
 
 	private void menu() {
-		list = FXCollections.observableArrayList( consoleUI.getOrderList() );
-		table = list;
+		listOrder = FXCollections.observableArrayList( consoleUI.getOrderList() );
+		tableViewOrder = listOrder;
+		
+		listConfirm = FXCollections.observableArrayList( consoleUI.getConfirmList() );
+		tableViewConfirm = listConfirm;
 	}
 	
 	@Override
@@ -70,7 +73,13 @@ public class MainController implements Initializable {
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
-		confirmTableView.setItems(table);
+		confirmTableView.setItems(tableViewOrder);
+		
+		statusTableColumn1.setCellValueFactory( new PropertyValueFactory<Menu, Integer>("menuID") );
+		statusTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
+		statusTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
+		statusTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
+		statusTableView.setItems(tableViewConfirm);
 	}
 
 	@FXML private HBox hBox;
@@ -124,10 +133,6 @@ public class MainController implements Initializable {
 	
 	public void addOrder(int index){
 		consoleUI.AddToOrderList( menuBook.getAllMenuList().get( index ) );
-	}
-	
-	public int callCost(int index){
-		return menuBook.getAllMenuList().get(index).getMenuCost();
 	}
 
 	public void findTotalItem() {

@@ -207,7 +207,7 @@
                            <children>
                               <BorderPane prefHeight="436.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <left>
-                                    <TableView prefHeight="422.0" prefWidth="492.0" BorderPane.alignment="CENTER">
+                                    <TableView fx:id="statusTableView" prefHeight="422.0" prefWidth="492.0" BorderPane.alignment="CENTER">
                                        <columns>
                                           <TableColumn fx:id="statusTableColumn1" prefWidth="24.010238647460938" text="#" />
                                           <TableColumn fx:id="statusTableColumn2" prefWidth="251.9897575378418" text="name" />
