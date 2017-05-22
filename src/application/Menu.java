@@ -46,7 +46,7 @@ public class Menu {
 		String name = menuName.get();
 		int cost = menuCost.get()*menuAmount.get();
 		int amount = menuAmount.get();
-		String sentence = ("ID: "+id+", Name: "+name+", Cost: "+cost+", Amount: "+amount+"\n\n") ;
+		String sentence = ("ID: "+id+", Name: "+name+", Cost: "+cost+", Amount: "+amount+"\n") ;
 		return sentence;
 	}
 	
