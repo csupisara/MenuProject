@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -19,7 +25,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="programPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane fx:id="programPane" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -95,7 +101,7 @@
                                                       <Image url="@MenuPictures/2-gang-som-pak-ruam.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button2" layoutX="72.0" layoutY="158.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Gang Som Pak Ruam" textFill="WHITE" />
+                                                <Button fx:id="button2" layoutX="72.0" layoutY="158.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Gang Som Pak Ruam" textFill="WHITE" />
                                                 <Label layoutX="116.0" layoutY="193.0" text="200 Baht" />
                                              </children>
                                           </Pane>
@@ -106,7 +112,7 @@
                                                       <Image url="@MenuPictures/3-gang-keow-wan.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button3" alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Gang Keow Wan" textFill="WHITE" />
+                                                <Button fx:id="button3" alignment="CENTER" contentDisplay="CENTER" layoutX="84.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Gang Keow Wan" textFill="WHITE" />
                                                 <Label layoutX="111.0" layoutY="195.0" text="300 Baht" />
                                              </children>
                                           </Pane>
@@ -117,7 +123,7 @@
                                                       <Image url="@MenuPictures/4-Panang-Gai.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button4" layoutX="98.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Panang Gai" textFill="WHITE" />
+                                                <Button fx:id="button4" layoutX="98.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Panang Gai" textFill="WHITE" />
                                                 <Label layoutX="113.0" layoutY="195.0" text="250 Baht" />
                                              </children>
                                           </Pane>
@@ -128,7 +134,7 @@
                                                       <Image url="@MenuPictures/5-gang-massaman.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button5" alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="163.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Gang Massaman" textAlignment="CENTER" textFill="WHITE" />
+                                                <Button fx:id="button5" alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="163.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Gang Massaman" textAlignment="CENTER" textFill="WHITE" />
                                                 <Label layoutX="110.0" layoutY="195.0" text="350 Baht" />
                                              </children>
                                           </Pane>
@@ -139,7 +145,7 @@
                                                       <Image url="@MenuPictures/6-pad-pongali-gai.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button6" layoutX="84.0" layoutY="161.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Gai Pad Pongali" textFill="WHITE" />
+                                                <Button fx:id="button6" layoutX="84.0" layoutY="161.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Gai Pad Pongali" textFill="WHITE" />
                                                 <Label layoutX="113.0" layoutY="196.0" text="200 Baht" />
                                              </children>
                                           </Pane>
@@ -151,7 +157,7 @@
                                                       <Image url="@MenuPictures/7-gang-jeud-tow-who.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button7" layoutX="98.0" layoutY="158.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Gang Jued" textFill="WHITE" />
+                                                <Button fx:id="button7" layoutX="98.0" layoutY="158.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Gang Jued" textFill="WHITE" />
                                              </children>
                                           </Pane>
                                           <Pane prefHeight="244.0" prefWidth="288.0">
@@ -161,7 +167,7 @@
                                                       <Image url="@MenuPictures/8-jim-jum.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button8" layoutX="110.0" layoutY="159.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Jim Jum" textFill="WHITE" />
+                                                <Button fx:id="button8" layoutX="110.0" layoutY="159.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Jim Jum" textFill="WHITE" />
                                                 <Label layoutX="115.0" layoutY="192.0" text="300 Baht" />
                                              </children>
                                           </Pane>
@@ -172,7 +178,7 @@
                                                       <Image url="@MenuPictures/9-kao-na-phet.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button9" layoutX="91.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Kao Na Phet" textFill="WHITE" />
+                                                <Button fx:id="button9" layoutX="91.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Kao Na Phet" textFill="WHITE" />
                                                 <Label layoutX="111.0" layoutY="192.0" text="250 Baht" />
                                              </children>
                                           </Pane>
@@ -183,7 +189,7 @@
                                                       <Image url="@MenuPictures/10-kai-jiew-moo-saap.jpg" />
                                                    </image>
                                                 </ImageView>
-                                                <Button fx:id="button10" layoutX="74.0" layoutY="160.0" mnemonicParsing="false" style="-fx-background-color: #696969;" text="Kai Jiew Moo Saap" textFill="WHITE" />
+                                                <Button fx:id="button10" layoutX="74.0" layoutY="160.0" mnemonicParsing="false" onAction="#clickMenu" style="-fx-background-color: #696969;" text="Kai Jiew Moo Saap" textFill="WHITE" />
                                                 <Label layoutX="111.0" layoutY="193.0" text="200 Baht" />
                                              </children>
                                           </Pane>

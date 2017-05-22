@@ -119,9 +119,38 @@ public class MainController implements Initializable {
 	}
 
 	public void clickMenu(ActionEvent event){
-		System.out.println("ccc");
-		System.out.println(event.toString());
-		
+		Object choosenButton = event.getSource();
+		if( choosenButton.equals( button1 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 0 ) );
+		}
+		else if( choosenButton.equals( button2 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 1 ) );
+		}
+		else if( choosenButton.equals( button3 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 2 ) );
+		}
+		else if( choosenButton.equals( button4 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 3 ) );
+		}
+		else if( choosenButton.equals( button5 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 4 ) );
+		}
+		else if( choosenButton.equals( button6 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 5 ) );
+		}
+		else if( choosenButton.equals( button7 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 6 ) );
+		}
+		else if( choosenButton.equals( button8 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 7 ) );
+		}
+		else if( choosenButton.equals( button9 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 8 ) );
+		}
+		else if( choosenButton.equals( button10 ) ) {
+			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 9 ) );
+		}
+		updateDisplay();
 	}
 	
 	public void checkbill(ActionEvent event){
