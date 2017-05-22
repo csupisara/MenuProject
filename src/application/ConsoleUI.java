@@ -58,7 +58,7 @@ public class ConsoleUI extends Observable {
 	}
 
 	public void AddToConfirmList( List<Menu> orderList ) {
-		for(int i=0 ; i<orderList.size() ; i++) {
+		for(int i = 0 ; i < orderList.size() ; i++) {
 			Menu currentMenu = orderList.get( i );
 			if( isContainInConfirmListCheckByID( currentMenu ) ) {
 				int indexOfThatMenu = findIndexInConfirmListCheckByID( currentMenu );
