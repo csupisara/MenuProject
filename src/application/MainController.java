@@ -108,7 +108,7 @@ public class MainController implements Initializable {
 	}
 
 	public void clear(ActionEvent event){
-		consoleUI.clearConfirmList();
+		consoleUI.clearOrderList();
 		updateDisplay();
 	}
 
