@@ -28,38 +28,21 @@ import javafx.scene.layout.HBox;
 
 public class MainController implements Initializable {
 
-	private ObservableList<Menu> list;
+	private ObservableList<Menu> list, table;
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
-	public ObservableList<Menu> table;
 	int total,item = 0;
 
 	@FXML private TableView<Menu> confirmTableView;
-	@FXML private TableColumn<Menu, Integer> menuTableColumn1;
+	@FXML private TableColumn<Menu, Integer> menuTableColumn1, menuTableColumn3, menuTableColumn4;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
-	@FXML private TableColumn<Menu, Integer> menuTableColumn3;
-	@FXML private TableColumn<Menu, Integer> menuTableColumn4;
 	
 	@FXML private TableView<Menu> statusTableView;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn1;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4, statusTableColumn5;
 	@FXML private TableColumn<Menu, String> statusTableColumn2;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn3;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn4;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn5;
 	
-	@FXML private Button clear;
-	@FXML private Button confirm;
-	@FXML private Button checkbill;
-	@FXML private Button button1;
-	@FXML private Button button2;
-	@FXML private Button button3;
-	@FXML private Button button4;
-	@FXML private Button button5;
-	@FXML private Button button6;
-	@FXML private Button button7;
-	@FXML private Button button8;
-	@FXML private Button button9;
-	@FXML private Button button10;
+	@FXML private Button clear, confirm, checkbill;
+	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
 
 	public MainController() {
@@ -120,35 +103,16 @@ public class MainController implements Initializable {
 
 	public void clickMenu(ActionEvent event){
 		int index = 0;
-		Object choosenButton = event.getSource();
-		if( choosenButton.equals( button1 ) ) { }
-		else if( choosenButton.equals( button2 ) ) {
-			index = 1;
-		}
-		else if( choosenButton.equals( button3 ) ) {
-			index = 2;
-		}
-		else if( choosenButton.equals( button4 ) ) {
-			index = 3;
-		}
-		else if( choosenButton.equals( button5 ) ) {
-			index = 4;
-		}
-		else if( choosenButton.equals( button6 ) ) {
-			index = 5;
-		}
-		else if( choosenButton.equals( button7 ) ) {
-			index = 6;
-		}
-		else if( choosenButton.equals( button8 ) ) {
-			index = 7;
-		}
-		else if( choosenButton.equals( button9 ) ) {
-			index = 8;
-		}
-		else if( choosenButton.equals( button10 ) ) {
-			index = 9;
-		}
+		if( isButton(event, button1) ) { }
+		else if( isButton(event, button2) ) index = 1;
+		else if( isButton(event, button3) ) index = 2;
+		else if( isButton(event, button4) ) index = 3;
+		else if( isButton(event, button5) ) index = 4;
+		else if( isButton(event, button6) ) index = 5;
+		else if( isButton(event, button7) ) index = 6;
+		else if( isButton(event, button8) ) index = 7;
+		else if( isButton(event, button9) ) index = 8;
+		else if( isButton(event, button10) ) index = 9;
 		addOrder(index);
 		totalLabel(callCost(index));
 		updateDisplay();
@@ -156,6 +120,10 @@ public class MainController implements Initializable {
 		setItem(item);
 	}
 
+	public boolean isButton(ActionEvent event, Button button){
+		Object choosenButton = event.getSource();
+		return choosenButton.equals( button ) ;
+	}
 	
 	public void addOrder(int index){
 		consoleUI.AddToOrderList( menuBook.getAllMenuList().get( index ) );
@@ -181,9 +149,6 @@ public class MainController implements Initializable {
 	public void checkbill(ActionEvent event){
 		
 	}
-
-	@FXML private Tab statusTab;
-
 	@FXML private ProgressIndicator progress;
 	
 	@FXML private JFXButton test;
@@ -191,7 +156,4 @@ public class MainController implements Initializable {
 	@FXML private Tab menuTab;
 
 	@FXML private Label menuName;
-
-	@FXML private Label price;
-
 }
