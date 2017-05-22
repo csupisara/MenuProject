@@ -44,9 +44,9 @@ public class Menu {
 	public String toString() {
 		int id = menuID.get();
 		String name = menuName.get();
-		int cost = menuCost.get();
-		int amount = menuCost.get();
-		String sentence = ("ID: "+id+", Name: "+name+", Cost: "+cost+", Amount: "+amount) ;
+		int cost = menuCost.get()*menuAmount.get();
+		int amount = menuAmount.get();
+		String sentence = ("ID: "+id+", Name: "+name+", Cost: "+cost+", Amount: "+amount+"\n\n") ;
 		return sentence;
 	}
 	

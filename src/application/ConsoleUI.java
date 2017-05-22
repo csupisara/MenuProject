@@ -24,6 +24,10 @@ public class ConsoleUI extends Observable {
 	public List<Menu> getOrderList() {
 		return orderList;
 	}
+	
+	public List<Menu> getConfirmList() {
+		return confirmList;
+	}
 
 	public void AddToOrderList( Menu menu ) {
 		if( orderList.contains( menu ) ) {
@@ -57,6 +61,7 @@ public class ConsoleUI extends Observable {
 		for(int i=0 ; i<orderList.size() ; i++) {
 			Menu currentMenu = orderList.get( i );
 			if( confirmList.contains( currentMenu ) ) {
+				System.out.println( "eiei" );
 				int indexOfThatMenu = confirmList.indexOf( currentMenu );
 				confirmList.get( indexOfThatMenu ).addManyAmount( currentMenu.getMenuAmount() );
 			}
@@ -64,6 +69,7 @@ public class ConsoleUI extends Observable {
 				confirmList.add( currentMenu );
 			}
 		}
+		System.out.println( Arrays.toString( confirmList.toArray() ) );
 		Collections.sort( confirmList , new Comparator<Menu>() {
 
 			@Override
