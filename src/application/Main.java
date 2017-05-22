@@ -22,6 +22,17 @@ public class Main extends Application {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+		
+		Stage secondStage = new Stage();
+		try {
+			Parent root = FXMLLoader.load(ClassLoader.getSystemResource("application/MyMain.fxml"));
+			Scene scene = new Scene( root , 700 , 500 );
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			secondStage.setScene(scene);
+			secondStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] args) {
