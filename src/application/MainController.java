@@ -79,6 +79,10 @@ public class MainController implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		setCell();
+	}
+	
+	public void setCell(){
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
@@ -111,60 +115,58 @@ public class MainController implements Initializable {
 
 	public void updateDisplay() {
 		menu();
-		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
-		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
-		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
-		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
-		confirmTableView.setItems(table);
+		setCell();
 	}
 
 	public void clickMenu(ActionEvent event){
-
-
+		int index = 0;
 		Object choosenButton = event.getSource();
-		if( choosenButton.equals( button1 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 0 ) );
-		}
+		if( choosenButton.equals( button1 ) ) { }
 		else if( choosenButton.equals( button2 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 1 ) );
+			index = 1;
 		}
 		else if( choosenButton.equals( button3 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 2 ) );
+			index = 2;
 		}
 		else if( choosenButton.equals( button4 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 3 ) );
+			index = 3;
 		}
 		else if( choosenButton.equals( button5 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 4 ) );
+			index = 4;
 		}
 		else if( choosenButton.equals( button6 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 5 ) );
+			index = 5;
 		}
 		else if( choosenButton.equals( button7 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 6 ) );
+			index = 6;
 		}
 		else if( choosenButton.equals( button8 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 7 ) );
+			index = 7;
 		}
 		else if( choosenButton.equals( button9 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 8 ) );
+			index = 8;
 		}
 		else if( choosenButton.equals( button10 ) ) {
-			consoleUI.AddToOrderList( menuBook.getAllMenuList().get( 9 ) );
+			index = 9;
 		}
+		addOrder(index);
+		totalLabel(callCost(index));
 		updateDisplay();
-		
-
-		totalLabel();
+		item++;
 		setItem(item);
 	}
+
 	
-	public void checkbill(ActionEvent event){
-		
+	public void addOrder(int index){
+		consoleUI.AddToOrderList( menuBook.getAllMenuList().get( index ) );
+	}
+	
+	public int callCost(int index){
+		return menuBook.getAllMenuList().get(index).getMenuCost();
 	}
 
-	public void totalLabel(){
-		total += Integer.parseInt(menuTableColumn3.getText());
+	public void totalLabel(int cost){
+		total += cost;
 		setTotal(total);
 	}
 	
@@ -173,10 +175,12 @@ public class MainController implements Initializable {
 	}
 	
 	public void setItem(int item){
-		itemLabel.setText("ITEM: " + item++);
+		itemLabel.setText("ITEM: " + item);
 	}
 
-
+	public void checkbill(ActionEvent event){
+		
+	}
 
 	@FXML private Tab statusTab;
 
