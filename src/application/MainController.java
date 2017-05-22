@@ -180,6 +180,7 @@ public class MainController implements Initializable {
 			writer.write("\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU");
 			writer.close();
 			billNumber++;
+			AlertBox.display();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
