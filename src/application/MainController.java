@@ -1,6 +1,10 @@
 package application;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -160,18 +164,24 @@ public class MainController implements Initializable {
 		itemLabel.setText("ITEM: " + numAmountItem);
 	}
 
-	public static void saveToFile(String fileName, ArrayList list){
-		Path filePath = Paths.get(fileName);
-		try{
-			Files.write(filePath, list, Charset.defaultCharset());		
-		}catch(IOException e){
+//	public static void saveToFile(String fileName, ArrayList list){
+//		Path filePath = Paths.get(fileName);
+//		try{
+//			Files.write(filePath, list, Charset.defaultCharset());		
+//		}catch(IOException e){
+//			e.printStackTrace();
+//		}
+//	}
+
+	public void checkbill(ActionEvent event) throws IOException{
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter(".\\bill.txt"));
+			writer.write(Arrays.toString(consoleUI.getConfirmList().toArray()));
+			writer.write("test");
+			writer.close();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void checkbill(ActionEvent event){
-//		saveToFile("bill.txt", menuBook.getAllMenuList());
-//		saveToFile("bill.txt", Arrays.toString(consoleUI.getConfirmList().toArray()));
 		System.out.println(Arrays.toString(consoleUI.getConfirmList().toArray()));
 	}
 	
