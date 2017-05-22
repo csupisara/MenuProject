@@ -22,7 +22,7 @@ public class Menu {
 	}
 	
 	public int getMenuCost() {
-		return menuCost.get();
+		return menuCost.get()*menuAmount.get();
 	}
 	
 	public int getMenuID() {
