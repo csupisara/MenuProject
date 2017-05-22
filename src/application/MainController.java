@@ -14,8 +14,6 @@ import java.util.ArrayList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -169,25 +167,21 @@ public class MainController implements Initializable {
 		itemLabel.setText("ITEM: " + numAmountItem);
 	}
 
-//	public static void saveToFile(String fileName, ArrayList list){
-//		Path filePath = Paths.get(fileName);
-//		try{
-//			Files.write(filePath, list, Charset.defaultCharset());		
-//		}catch(IOException e){
-//			e.printStackTrace();
-//		}
-//	}
-
 	public void checkbill(ActionEvent event) throws IOException{
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter(".\\bill.txt"));
-			writer.write(Arrays.toString(consoleUI.getConfirmList().toArray()));
-			writer.write("test");
+			BufferedWriter writer = new BufferedWriter(new FileWriter("bill.txt"));
+			writer.write("SKE14 RESTAURANT\n(VAT INCLUDED)\n\n");
+			for( Object x : consoleUI.getConfirmList().toArray() ){
+				writer.write(x.toString() + "\n");
+			}
+			writer.write("\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU");
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println(Arrays.toString(consoleUI.getConfirmList().toArray()));
+		consoleUI.clearOrderList();
+		consoleUI.clearConfirmList();
+		updateDisplay();
 	}
 	
 	@FXML private ProgressIndicator progress;
