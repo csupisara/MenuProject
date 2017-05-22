@@ -60,16 +60,14 @@ public class ConsoleUI extends Observable {
 	public void AddToConfirmList( List<Menu> orderList ) {
 		for(int i=0 ; i<orderList.size() ; i++) {
 			Menu currentMenu = orderList.get( i );
-			if( confirmList.contains( currentMenu ) ) {
-				System.out.println( "eiei" );
-				int indexOfThatMenu = confirmList.indexOf( currentMenu );
+			if( isContainInConfirmListCheckByID( currentMenu ) ) {
+				int indexOfThatMenu = findIndexInConfirmListCheckByID( currentMenu );
 				confirmList.get( indexOfThatMenu ).addManyAmount( currentMenu.getMenuAmount() );
 			}
 			else {
 				confirmList.add( currentMenu );
 			}
 		}
-		System.out.println( Arrays.toString( confirmList.toArray() ) );
 		Collections.sort( confirmList , new Comparator<Menu>() {
 
 			@Override
@@ -129,6 +127,26 @@ public class ConsoleUI extends Observable {
 	public void clearConfirmList() {
 		confirmList.clear();
 		menuBook.resetMenu();
+	}
+	
+	public boolean isContainInConfirmListCheckByID( Menu menu ) {
+		int checkingID = menu.getMenuID();
+		for(int i=0 ; i<confirmList.size() ; i++) {
+			if( confirmList.get(i).getMenuID() == checkingID ) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public int findIndexInConfirmListCheckByID( Menu menu ) {
+		int checkingID = menu.getMenuID();
+		for(int i=0 ; i<confirmList.size() ; i++) {
+			if( confirmList.get(i).getMenuID() == checkingID ) {
+				return i;
+			}
+		}
+		return 0;
 	}
 
 }
