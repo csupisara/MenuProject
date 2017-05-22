@@ -1,0 +1,11 @@
+SKE14 RESTAURANT
+(VAT INCLUDED)
+
+ID: 7, Name: "Gang Jued" , Cost: 200, Amount: 1
+
+ID: 10, Name: "Kai Jiew Moo Saap" , Cost: 200, Amount: 1
+
+
+-----------------
+TOTAL: 400 Baht
+THANK YOU

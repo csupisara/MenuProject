@@ -181,6 +181,8 @@ public class MainController implements Initializable {
 		}
 		consoleUI.clearOrderList();
 		consoleUI.clearConfirmList();
+		setTotalCost(0);
+		setTotalItem(0);
 		updateDisplay();
 	}
 	
