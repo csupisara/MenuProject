@@ -37,6 +37,10 @@ public class Menu {
 		menuAmount.set( menuAmount.get()+1 );
 	}
 	
+	public void addManyAmount(int n) {
+		menuAmount.set( menuAmount.get()+n );
+	}
+	
 	public String toString() {
 		int id = menuID.get();
 		String name = menuName.get();
