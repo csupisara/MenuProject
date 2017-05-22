@@ -96,7 +96,7 @@ public class MainController implements Initializable {
 	}
 
 	public void clear(ActionEvent event){
-		consoleUI.clearOrderList();
+		consoleUI.clearConfirmList();
 		updateDisplay();
 		item = 0;
 		setItem(item);
@@ -164,7 +164,9 @@ public class MainController implements Initializable {
 	}
 
 	public void checkbill(ActionEvent event){
-		saveToFile("bill.txt", menuBook.getAllMenuList());
+//		saveToFile("bill.txt", menuBook.getAllMenuList());
+//		saveToFile("bill.txt", Arrays.toString(consoleUI.getConfirmList().toArray()));
+		System.out.println(Arrays.toString(consoleUI.getConfirmList().toArray()));
 	}
 	
 	@FXML private ProgressIndicator progress;
