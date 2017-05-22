@@ -133,6 +133,7 @@ public class MainController implements Initializable {
 	}
 
 	@FXML private Label totalLabel;
+	
 	@FXML private Label itemLabel;
 
 	@FXML private Tab statusTab;
