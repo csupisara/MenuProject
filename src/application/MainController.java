@@ -2,21 +2,8 @@ package application;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.Observable;
-import java.util.Observer;
 import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
@@ -26,14 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressIndicator;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 
 /**
  * Controller of the FXML.
@@ -121,6 +103,7 @@ public class MainController implements Initializable {
 		consoleUI.clearOrderList();
 		updateDisplay();
 		setTotalAll(consoleUI.getTotalCostInConfirmList());
+		AlertBox.display("Thank you for choosing SKE14 Restaurant.\n\t\tPay money with our Staff \n\t\t     See you next time :)");
 	}
 
 	/**
@@ -235,7 +218,7 @@ public class MainController implements Initializable {
 			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU");
 			writer.close();
 			billNumber++;
-			AlertBox.display();
+			AlertBox.display("You can check your order at STATUS tab on the top.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
