@@ -105,6 +105,8 @@ public class MainController implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
+		ChefController chefController = new ChefController();
+		chefController.setCell();
 	}
 
 	public void clear(ActionEvent event){
