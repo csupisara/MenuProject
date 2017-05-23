@@ -5,9 +5,8 @@ import java.util.*;
  * 
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
- * 
  */
-public class ConsoleUI extends Observable {
+public class ConsoleUI {
 
 	private MenuBook menuBook;
 	private List<Menu> orderList;

@@ -1,5 +1,7 @@
 package application;
 
+import com.sun.glass.ui.Timer;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
@@ -7,7 +9,6 @@ import javafx.beans.property.SimpleStringProperty;
  * Composition for each menu.
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
- *
  */
 public class Menu {
 
@@ -15,6 +16,8 @@ public class Menu {
 	private SimpleIntegerProperty menuCost;
 	private SimpleIntegerProperty menuID;
 	private SimpleIntegerProperty menuAmount;
+	private SimpleStringProperty status ;
+	private int cookTime = 5000;
 	
 	/**
 	 * Initialize the Menu.
@@ -27,6 +30,7 @@ public class Menu {
 		this.menuName = new SimpleStringProperty( inputName );
 		this.menuCost = new SimpleIntegerProperty( inputPrice );
 		this.menuAmount = new SimpleIntegerProperty( 0 );
+		this.status = new SimpleStringProperty( "Cooking" );
 	}
 	
 	/**
@@ -86,4 +90,23 @@ public class Menu {
 		String sentence = (amount + " " + name + "    " + cost + " baht\n") ;
 		return sentence;
 	}
+
+	public String getStatus() {
+		return status.get();
+	}
+	
+	public void addOneAmount() {
+		menuAmount.set( menuAmount.get()+1 );
+	}
+	
+	public void addManyAmount(int n) {
+		menuAmount.set( menuAmount.get()+n );
+	}
+	
+	public void changeStatus() {
+		if( status.get().equalsIgnoreCase( "Cooking" ) ) {
+			status.set( "Done" );
+		}
+	}
+
 }

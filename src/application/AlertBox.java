@@ -9,6 +9,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.*;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Supisara Chuthathumpitak
+ * @author Sathira Kittisukmongkol
+ */
 public class AlertBox {
 
 	public static void display(String text){

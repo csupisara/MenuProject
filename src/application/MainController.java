@@ -1,11 +1,16 @@
 package application;
 
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
+import javax.swing.MenuSelectionManager;
 import com.jfoenix.controls.JFXButton;
+import com.sun.glass.ui.Timer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,7 +26,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * Controller of the FXML.
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
- *
  */
 public class MainController implements Initializable {
 
@@ -35,8 +39,8 @@ public class MainController implements Initializable {
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 
 	@FXML private TableView<Menu> statusTableView;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4, statusTableColumn5;
-	@FXML private TableColumn<Menu, String> statusTableColumn2;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4;
+	@FXML private TableColumn<Menu, String> statusTableColumn2, statusTableColumn5;;
 	
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
@@ -63,7 +67,7 @@ public class MainController implements Initializable {
 	private void menu() {
 		listOrder = FXCollections.observableArrayList( consoleUI.getOrderList() );
 		tableViewOrder = listOrder;
-		
+
 		listConfirm = FXCollections.observableArrayList( consoleUI.getConfirmList() );
 		tableViewConfirm = listConfirm;
 	}
@@ -86,11 +90,12 @@ public class MainController implements Initializable {
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
 		confirmTableView.setItems(tableViewOrder);
-		
+
 		statusTableColumn1.setCellValueFactory( new PropertyValueFactory<Menu, Integer>("menuID") );
 		statusTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		statusTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		statusTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
+		statusTableColumn5.setCellValueFactory(new PropertyValueFactory<Menu, String>("status"));
 		statusTableView.setItems(tableViewConfirm);
 	}
 
@@ -102,8 +107,30 @@ public class MainController implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
-		setTotalAll(consoleUI.getTotalCostInConfirmList());
-		AlertBox.display("Thank you for choosing SKE14 Restaurant.\n\t\tPay money with our Staff \n\t\t     See you next time :)");
+		AlertBox.display("You can check your order at STATUS tab on the top.");
+		setTotalAll( consoleUI.getTotalCostInConfirmList() );
+		for(int i=0 ; i<consoleUI.getConfirmList().size() ; i++) {
+			Menu m = consoleUI.getConfirmList().get(i);
+			java.util.Timer timer = new java.util.Timer();
+			try {
+				if( i==0 ) {
+					/* Do nothing. */
+				}
+				else {
+					TimeUnit.SECONDS.sleep( 1*m.getMenuAmount() );					
+				}
+				timer.schedule( new TimerTask() {
+					
+					@Override
+					public void run() {
+						m.changeStatus();
+						updateDisplay();
+					}
+				} , 5000 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	/**
@@ -123,6 +150,8 @@ public class MainController implements Initializable {
 		findTotalCost();
 		menu();
 		setCell();
+		confirmTableView.refresh();
+		statusTableView.refresh();
 	}
 
 	/**
@@ -208,6 +237,7 @@ public class MainController implements Initializable {
 	 */
 	public void checkbill(ActionEvent event) {
 		try {
+			AlertBox.display("Thank you for choosing SKE14 Restaurant.\n\t\tPay money with our Staff \n\t\t     See you next time :)");
 			String today = LocalDate.now().toString();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber + " - " + today + ".txt"));
 			writer.write("Bill No." + billNumber + " \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
@@ -218,7 +248,6 @@ public class MainController implements Initializable {
 			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU");
 			writer.close();
 			billNumber++;
-			AlertBox.display("You can check your order at STATUS tab on the top.");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

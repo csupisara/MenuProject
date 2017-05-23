@@ -12,7 +12,6 @@ import javafx.scene.Scene;
  * Start the program.
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
- *
  */
 public class Main extends Application {
 	

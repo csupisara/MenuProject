@@ -7,6 +7,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Supisara Chuthathumpitak
+ * @author Sathira Kittisukmongkol
+ */
 public class MenuBook {
 
 	private InputStream inputStream;
