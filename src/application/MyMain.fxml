@@ -24,7 +24,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="1437.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
+<AnchorPane prefHeight="1437.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MainController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -232,7 +232,7 @@
                                           <JFXButton fx:id="checkbill" layoutX="53.0" layoutY="385.0" onAction="#checkbill" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" underline="true" />
                                           <PasswordField layoutX="-5.0" layoutY="39.0" prefHeight="27.0" prefWidth="131.0" />
                                           <Label layoutX="1.0" layoutY="14.0" text="MEMBER ID (Discount 10%) :" />
-                                          <JFXButton layoutX="132.0" layoutY="39.0" style="-fx-background-color: #008b8b;" text="ENTER" textFill="WHITE" />
+                                          <JFXButton fx:id="userLogin" layoutX="132.0" layoutY="39.0" style="-fx-background-color: #008b8b;" text="ENTER" textFill="WHITE" />
                                           <Label fx:id="totalAll" layoutX="71.0" layoutY="342.0" text="TOTAL: 0" />
                                        </children>
                                     </Pane>

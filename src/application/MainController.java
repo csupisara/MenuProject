@@ -32,6 +32,7 @@ public class MainController implements Initializable {
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
 	private ConsoleUI consoleUI;
+	private int tableNumber = 1;
 	private int billNumber = 1;
 
 	@FXML private TableView<Menu> confirmTableView;
@@ -108,7 +109,6 @@ public class MainController implements Initializable {
 		consoleUI.clearOrderList();
 		updateDisplay();
 		AlertBox.display("You can check your order at STATUS tab on the top.");
-		setTotalAll( consoleUI.getTotalCostInConfirmList() );
 		for(int i=0 ; i<consoleUI.getConfirmList().size() ; i++) {
 			Menu m = consoleUI.getConfirmList().get(i);
 			java.util.Timer timer = new java.util.Timer();
@@ -130,7 +130,7 @@ public class MainController implements Initializable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		}
+		}		
 	}
 
 	/**
@@ -148,6 +148,7 @@ public class MainController implements Initializable {
 	public void updateDisplay() {
 		findTotalItem();
 		findTotalCost();
+		setTotalAll( consoleUI.getTotalCostInConfirmList() );
 		menu();
 		setCell();
 		confirmTableView.refresh();
@@ -237,15 +238,19 @@ public class MainController implements Initializable {
 	 */
 	public void checkbill(ActionEvent event) {
 		try {
-			AlertBox.display("Thank you for choosing SKE14 Restaurant.\n\t\tPay money with our Staff \n\t\t     See you next time :)");
+			String checkBillMessege = "Thank you for choosing SKE14 Restaurant.\n\t\tPay money with our Staff \n\t\t     See you next time :)";
+			AlertBox.display( checkBillMessege );
 			String today = LocalDate.now().toString();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber + " - " + today + ".txt"));
-			writer.write("Bill No." + billNumber + " \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
+			String fileName = "Table_"+ tableNumber + " Bill_ " + billNumber + "_" + today + ".txt";
+			BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
+			String headBill = "\"SKE14 RESTAURANT\" "+" Table No."+tableNumber+" , Bill No." + billNumber + "\n(VAT INCLUDED)\n\n";
+			writer.write( headBill );
 			for( Menu x : consoleUI.getConfirmList() ){
 				writer.write( x.toString() + "\n");
 			}
-			writer.write("\n-----------------\nTOTAL: " + costAndVat( calculateVat(consoleUI.getTotalCostInConfirmList()), consoleUI.getTotalCostInConfirmList()) 
-			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU");
+			String buttomBill = "\n-----------------\nTOTAL(VAT included) : " + costAndVat( calculateVat(consoleUI.getTotalCostInConfirmList()), consoleUI.getTotalCostInConfirmList()) 
+			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU";
+			writer.write( buttomBill );
 			writer.close();
 			billNumber++;
 		} catch (Exception e) {
