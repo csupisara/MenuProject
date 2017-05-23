@@ -226,12 +226,13 @@ public class MainController implements Initializable {
 	public void checkbill(ActionEvent event) {
 		try {
 			String today = LocalDate.now().toString();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber+" - "+today+".txt"));
-			writer.write("Bill No."+billNumber+" \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
+			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber + " - " + today + ".txt"));
+			writer.write("Bill No." + billNumber + " \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
 			for( Menu x : consoleUI.getConfirmList() ){
 				writer.write( x.toString() + "\n");
 			}
-			writer.write("\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU");
+			writer.write("\n-----------------\nTOTAL: " + costAndVat( calculateVat(consoleUI.getTotalCostInConfirmList()), consoleUI.getTotalCostInConfirmList()) 
+			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU");
 			writer.close();
 			billNumber++;
 			AlertBox.display();
@@ -245,6 +246,26 @@ public class MainController implements Initializable {
 		setTotalAll( 0 );
 		updateDisplay();
 	}
+	
+	/**
+	 * Calculate the vat.
+	 * @param total is the total cost of all food that user order.
+	 * @return the vat for that cost.
+	 */
+	public int calculateVat(int total){
+		return (int) ((int)total*0.07);
+	}
+	
+	/**
+	 * Calculate the total cost that customer need to pay.
+	 * @param vat is the vat for that cost.
+	 * @param cost is the total cost of all food that user order.
+	 * @return the total cost which include vat.
+	 */
+	public double costAndVat(int vat, int cost){
+		return cost + vat;
+	}
+	
 	
 	/**
 	 * Get the event from the user and check the index, then call the method to delete.
