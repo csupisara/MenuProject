@@ -39,7 +39,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class MainController extends Thread implements Initializable {
+public class MainController implements Initializable {
 
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
@@ -57,7 +57,7 @@ public class MainController extends Thread implements Initializable {
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
-//	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
+	@FXML private JFXButton delete1;
 	@FXML private JFXButton delete2;
 	@FXML private JFXButton delete3;
 	@FXML private JFXButton delete4;
@@ -67,7 +67,6 @@ public class MainController extends Thread implements Initializable {
 	@FXML private JFXButton delete8;
 	@FXML private JFXButton delete9;
 	@FXML private JFXButton delete10;
-	@FXML private JFXButton delete1;
 	
 	public MainController() {
 		try {
@@ -105,21 +104,6 @@ public class MainController extends Thread implements Initializable {
 		statusTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
 		statusTableColumn5.setCellValueFactory(new PropertyValueFactory<Menu, String>("status"));
 		statusTableView.setItems(tableViewConfirm);
-	}
-
-	public void cooking() {
-		if( consoleUI.getConfirmList().size()>0 ) {
-			for( int i=0 ; i<consoleUI.getConfirmList().size() ; i++ ) {
-				Menu currentMenu = consoleUI.getConfirmList().get(i);
-				try {
-					this.join(1000);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
-				currentMenu.changeStatus();
-				setCell();
-			}
-		}
 	}
 	
 	@FXML private HBox hBox;
@@ -204,11 +188,13 @@ public class MainController extends Thread implements Initializable {
 		try {
 			String today = LocalDate.now().toString();
 			BufferedWriter writer = new BufferedWriter(new FileWriter(today+" Bill No."+billNumber+".txt"));
-			writer.write("Bill No."+billNumber+" \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
+			String headBill = "Bill No."+billNumber+" \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n";
+			String tailBill = "\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU";
+			writer.write( headBill );
 			for( Menu x : consoleUI.getConfirmList() ){
 				writer.write( x.toString() + "\n");
 			}
-			writer.write("\n-----------------\n" + totalLabel.getText() + " Baht\nTHANK YOU");
+			writer.write( tailBill );
 			writer.close();
 			billNumber++;
 			AlertBox.display();
