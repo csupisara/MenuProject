@@ -56,6 +56,34 @@ public class ConsoleUI extends Observable {
 
 		} );
 	}
+	
+	public void DeleteOrderList( Menu menu ) {
+		if( orderList.contains( menu ) ) {
+			int indexOfThatMenu = orderList.indexOf( menu );
+			if(orderList.get(indexOfThatMenu).getMenuAmount() == 1) orderList.remove(menu);
+			else{
+				orderList.get( indexOfThatMenu ).deleteOneAmount();
+			}
+			
+		}
+		Collections.sort( orderList , new Comparator<Menu>() {
+
+			@Override
+			public int compare(Menu o1, Menu o2) {
+				if( o1.getMenuID() > o2.getMenuID() ) {
+					return +1;
+				}
+				else if( o1.getMenuID() < o2.getMenuID() ) {
+					return -1;
+				}
+				else {
+					return 0;
+				}
+			}
+
+
+		} );
+	}
 
 	public void AddToConfirmList( List<Menu> orderList ) {
 		for(int i = 0 ; i < orderList.size() ; i++) {

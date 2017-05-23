@@ -3,9 +3,7 @@ Bill No.1 "SKE14 RESTAURANT"
 
 ID: 1, Name: "Tom Yum Gung" , Cost: 600, Amount: 3
 
-ID: 3, Name: "Gang Keow Wan" , Cost: 300, Amount: 1
-
 
 -----------------
-TOTAL: 900 Baht
+TOTAL: 600 Baht
 THANK YOU

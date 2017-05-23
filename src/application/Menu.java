@@ -41,6 +41,10 @@ public class Menu {
 		menuAmount.set( menuAmount.get()+n );
 	}
 	
+	public void deleteOneAmount(){
+		menuAmount.set( menuAmount.get()-1 );
+	}
+	
 	public String toString() {
 		int id = menuID.get();
 		String name = menuName.get();
