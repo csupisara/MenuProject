@@ -38,7 +38,7 @@ import javafx.scene.layout.HBox;
 /**
  * Controller of the FXML.
  * @author Supisara Chuthathumpitak
- * @author 
+ * @author Sathira Kittisukmongkol
  *
  */
 public class MainController implements Initializable {
@@ -60,6 +60,7 @@ public class MainController implements Initializable {
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
 	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
+	@FXML private Label totalAll;
 	
 	/**
 	 * Initialize MainController
@@ -119,6 +120,7 @@ public class MainController implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
+		setTotalAll(consoleUI.getTotalCostInConfirmList());
 	}
 
 	/**
@@ -240,6 +242,7 @@ public class MainController implements Initializable {
 		consoleUI.clearConfirmList();
 		setTotalCost( 0 );
 		setTotalItem( 0 );
+		setTotalAll( 0 );
 		updateDisplay();
 	}
 	
@@ -270,4 +273,13 @@ public class MainController implements Initializable {
 	public void deleteOrder(int index){
 		consoleUI.DeleteOrderList( menuBook.getAllMenuList().get( index ) );
 	}
+	
+	/**
+	 * Set total that user confirm.
+	 * @param total is the total cost of all menu rhat user confirm.
+	 */
+	public void setTotalAll(int total){
+		totalAll.setText("TOTAL: " + total);
+	}
+	
 }

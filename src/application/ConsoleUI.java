@@ -2,12 +2,22 @@ package application;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * 
+ * @author Supisara Chuthathumpitak
+ * @author Sathira Kittisukmongkol
+ * 
+ */
 public class ConsoleUI extends Observable {
 
 	private MenuBook menuBook;
 	private List<Menu> orderList;
 	private List<Menu> confirmList;
 
+	/**
+	 * Initialize ConsoleUI.
+	 * @param menuBook
+	 */
 	public ConsoleUI( MenuBook menuBook ) {
 		this.menuBook = menuBook;
 		orderList = new ArrayList<Menu>();
@@ -33,10 +43,10 @@ public class ConsoleUI extends Observable {
 	public void AddToOrderList( Menu menu ) {
 		if( orderList.contains( menu ) ) {
 			int indexOfThatMenu = orderList.indexOf( menu );
-			orderList.get( indexOfThatMenu ).addOneAmount();
+			orderList.get( indexOfThatMenu ).addAmount(1);
 		}
 		else {
-			menu.addOneAmount();
+			menu.addAmount(1);
 			orderList.add( menu );
 		}
 		Collections.sort( orderList , new Comparator<Menu>() {
@@ -91,7 +101,7 @@ public class ConsoleUI extends Observable {
 			Menu currentMenu = orderList.get( i );
 			if( isContainInConfirmListCheckByID( currentMenu ) ) {
 				int indexOfThatMenu = findIndexInConfirmListCheckByID( currentMenu );
-				confirmList.get( indexOfThatMenu ).addManyAmount( currentMenu.getMenuAmount() );
+				confirmList.get( indexOfThatMenu ).addAmount( currentMenu.getMenuAmount() );
 			}
 			else {
 				confirmList.add( currentMenu );
