@@ -57,7 +57,18 @@ public class MainController extends Thread implements Initializable {
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
-
+//	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
+	@FXML private JFXButton delete2;
+	@FXML private JFXButton delete3;
+	@FXML private JFXButton delete4;
+	@FXML private JFXButton delete5;
+	@FXML private JFXButton delete6;
+	@FXML private JFXButton delete7;
+	@FXML private JFXButton delete8;
+	@FXML private JFXButton delete9;
+	@FXML private JFXButton delete10;
+	@FXML private JFXButton delete1;
+	
 	public MainController() {
 		try {
 			menuBook = new MenuBook( "EngMenu.csv" );
@@ -125,12 +136,6 @@ public class MainController extends Thread implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
-		try {
-			consoleUI.join( 3000 );
-		} catch( Exception ex ) {
-			ex.printStackTrace();
-		}
-		cooking();
 	}
 
 	public void clear(ActionEvent event){
@@ -236,6 +241,26 @@ public class MainController extends Thread implements Initializable {
 	@FXML private ProgressIndicator progress;
 
 	@FXML private JFXButton test;
+
+	public void deleteSomeMenu(ActionEvent event){
+		int index = 0;
+		if( isButton(event, delete1) ) { }
+		else if( isButton(event, delete2) ) index = 1;
+		else if( isButton(event, delete3) ) index = 2;
+		else if( isButton(event, delete4) ) index = 3;
+		else if( isButton(event, delete5) ) index = 4;
+		else if( isButton(event, delete6) ) index = 5;
+		else if( isButton(event, delete7) ) index = 6;
+		else if( isButton(event, delete8) ) index = 7;
+		else if( isButton(event, delete9) ) index = 8;
+		else if( isButton(event, delete10) ) index = 9;
+		deleteOrder(index);
+		updateDisplay();
+	}
+	
+	public void deleteOrder(int index){
+		consoleUI.DeleteOrderList( menuBook.getAllMenuList().get( index ) );
+	}
 
 	@FXML private Tab menuTab;
 
