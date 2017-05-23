@@ -1,20 +1,25 @@
 package application;
 
+import com.sun.glass.ui.Timer;
+
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
-public class Menu {
+public class Menu extends Thread{
 
 	private SimpleStringProperty menuName;
 	private SimpleIntegerProperty menuCost;
 	private SimpleIntegerProperty menuID;
 	private SimpleIntegerProperty menuAmount;
+	private SimpleStringProperty status ;
+	private int cookTime = 5000;
 	
 	public Menu( int inputMenuNum , String inputName , int inputPrice ) {
 		this.menuID = new SimpleIntegerProperty( inputMenuNum );
 		this.menuName = new SimpleStringProperty( inputName );
 		this.menuCost = new SimpleIntegerProperty( inputPrice );
 		this.menuAmount = new SimpleIntegerProperty( 0 );
+		this.status = new SimpleStringProperty( "Cooking" );
 	}
 	
 	public String getMenuName() {
@@ -33,12 +38,30 @@ public class Menu {
 		return menuAmount.get();
 	}
 	
+	public String getStatus() {
+		return status.get();
+	}
+	
 	public void addOneAmount() {
 		menuAmount.set( menuAmount.get()+1 );
 	}
 	
 	public void addManyAmount(int n) {
 		menuAmount.set( menuAmount.get()+n );
+	}
+	
+	public void changeStatus() {
+			if( status.get().equals( "Cooking" ) ) {
+				try {
+					this.sleep( cookTime );
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				status.set( "Done" );
+			}
+			else {
+				status.set( "Cooking" );
+			}
 	}
 	
 	public String toString() {

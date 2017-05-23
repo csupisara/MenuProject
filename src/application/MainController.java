@@ -15,9 +15,13 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+
+import javax.swing.MenuSelectionManager;
+
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +39,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class MainController implements Initializable {
+public class MainController extends Thread implements Initializable {
 
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
@@ -47,8 +51,8 @@ public class MainController implements Initializable {
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 
 	@FXML private TableView<Menu> statusTableView;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4, statusTableColumn5;
-	@FXML private TableColumn<Menu, String> statusTableColumn2;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4;
+	@FXML private TableColumn<Menu, String> statusTableColumn2, statusTableColumn5;
 
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
@@ -88,9 +92,25 @@ public class MainController implements Initializable {
 		statusTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		statusTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		statusTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
+		statusTableColumn5.setCellValueFactory(new PropertyValueFactory<Menu, String>("status"));
 		statusTableView.setItems(tableViewConfirm);
 	}
 
+	public void cooking() {
+		if( consoleUI.getConfirmList().size()>0 ) {
+			for( int i=0 ; i<consoleUI.getConfirmList().size() ; i++ ) {
+				Menu currentMenu = consoleUI.getConfirmList().get(i);
+				try {
+					this.join(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				currentMenu.changeStatus();
+				setCell();
+			}
+		}
+	}
+	
 	@FXML private HBox hBox;
 
 	@FXML private TabPane tabPane;
@@ -105,8 +125,12 @@ public class MainController implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
-		ChefController chefController = new ChefController();
-		chefController.setCell();
+		try {
+			consoleUI.join( 3000 );
+		} catch( Exception ex ) {
+			ex.printStackTrace();
+		}
+		cooking();
 	}
 
 	public void clear(ActionEvent event){
@@ -174,7 +198,7 @@ public class MainController implements Initializable {
 	public void checkbill(ActionEvent event) {
 		try {
 			String today = LocalDate.now().toString();
-			BufferedWriter writer = new BufferedWriter(new FileWriter(billNumber+" - "+today+".txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter(today+" Bill No."+billNumber+".txt"));
 			writer.write("Bill No."+billNumber+" \"SKE14 RESTAURANT\"\n(VAT INCLUDED)\n\n");
 			for( Menu x : consoleUI.getConfirmList() ){
 				writer.write( x.toString() + "\n");
@@ -191,6 +215,22 @@ public class MainController implements Initializable {
 		setTotalCost( 0 );
 		setTotalItem( 0 );
 		updateDisplay();
+	}
+	
+	public ArrayList<Menu> getOrderList() {
+		ArrayList<Menu> newList = new ArrayList<Menu>();
+		for(int i=0; i<tableViewOrder.size() ;i++) {
+			newList.add( tableViewOrder.get(i) );
+		}
+		return newList;
+	}
+	
+	public ArrayList<Menu> getConfirmList() {
+		ArrayList<Menu> newList = new ArrayList<Menu>();
+		for(int i=0; i<tableViewConfirm.size() ;i++) {
+			newList.add( tableViewConfirm.get(i) );
+		}
+		return newList;
 	}
 	
 	@FXML private ProgressIndicator progress;
