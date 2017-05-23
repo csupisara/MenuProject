@@ -105,5 +105,4 @@ public class MenuBook {
 		readPrice.clear();
 		createMenu( fileName );
 	}
-
 }

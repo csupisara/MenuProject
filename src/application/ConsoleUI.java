@@ -185,6 +185,5 @@ public class ConsoleUI {
 		}
 		return 0;
 	}
-
 }
 

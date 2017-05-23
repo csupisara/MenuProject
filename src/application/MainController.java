@@ -35,11 +35,11 @@ public class MainController implements Initializable {
 	private int billNumber = 1;
 
 	@FXML private TableView<Menu> confirmTableView;
-	@FXML private TableColumn<Menu, Integer> menuTableColumn1, menuTableColumn3, menuTableColumn4;
+	@FXML private TableColumn<Menu, Integer> menuTableColumn3, menuTableColumn4;
 	@FXML private TableColumn<Menu, String> menuTableColumn2;
 
 	@FXML private TableView<Menu> statusTableView;
-	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4;
+	@FXML private TableColumn<Menu, Integer> statusTableColumn3, statusTableColumn4;
 	@FXML private TableColumn<Menu, String> statusTableColumn2, statusTableColumn5;;
 	
 	@FXML private Button clear, confirm, checkbill;
@@ -85,13 +85,11 @@ public class MainController implements Initializable {
 	 * Set the table coulmn.
 	 */
 	public void setCell(){
-		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
 		confirmTableView.setItems(tableViewOrder);
 
-		statusTableColumn1.setCellValueFactory( new PropertyValueFactory<Menu, Integer>("menuID") );
 		statusTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		statusTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		statusTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
