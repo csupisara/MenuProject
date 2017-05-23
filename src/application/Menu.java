@@ -50,8 +50,14 @@ public class Menu extends Thread{
 		menuAmount.set( menuAmount.get()+n );
 	}
 	
-	public void deleteOneAmount(){
+	public void deleteOneAmount() {
 		menuAmount.set( menuAmount.get()-1 );
+	}
+	
+	public void changeStatus() {
+		if( status.get().equalsIgnoreCase( "Cooking" ) ) {
+			status.set( "Done" );
+		}
 	}
 	
 	public String toString() {

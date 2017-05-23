@@ -1,5 +1,6 @@
 package application;
 
+import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,10 +20,14 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
+import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.MenuSelectionManager;
 
 import com.jfoenix.controls.JFXButton;
+import com.sun.glass.ui.Timer;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,7 +44,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
-public class MainController implements Initializable {
+public class MainController extends Thread implements Initializable {
 
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
 	private MenuBook menuBook;
@@ -67,7 +72,7 @@ public class MainController implements Initializable {
 	@FXML private JFXButton delete8;
 	@FXML private JFXButton delete9;
 	@FXML private JFXButton delete10;
-	
+
 	public MainController() {
 		try {
 			menuBook = new MenuBook( "EngMenu.csv" );
@@ -81,7 +86,7 @@ public class MainController implements Initializable {
 	private void menu() {
 		listOrder = FXCollections.observableArrayList( consoleUI.getOrderList() );
 		tableViewOrder = listOrder;
-		
+
 		listConfirm = FXCollections.observableArrayList( consoleUI.getConfirmList() );
 		tableViewConfirm = listConfirm;
 	}
@@ -97,7 +102,7 @@ public class MainController implements Initializable {
 		menuTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
 		menuTableColumn4.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuCost"));
 		confirmTableView.setItems(tableViewOrder);
-		
+
 		statusTableColumn1.setCellValueFactory( new PropertyValueFactory<Menu, Integer>("menuID") );
 		statusTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
 		statusTableColumn3.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuAmount"));
@@ -105,7 +110,7 @@ public class MainController implements Initializable {
 		statusTableColumn5.setCellValueFactory(new PropertyValueFactory<Menu, String>("status"));
 		statusTableView.setItems(tableViewConfirm);
 	}
-	
+
 	@FXML private HBox hBox;
 
 	@FXML private TabPane tabPane;
@@ -120,6 +125,28 @@ public class MainController implements Initializable {
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
+		for(int i=0 ; i<consoleUI.getConfirmList().size() ; i++) {
+			Menu m = consoleUI.getConfirmList().get(i);
+			java.util.Timer timer = new java.util.Timer();
+			try {
+				if( i==0 ) {
+					/* Do nothing. */
+				}
+				else {
+					TimeUnit.SECONDS.sleep( 1*m.getMenuAmount() );					
+				}
+				timer.schedule( new TimerTask() {
+					
+					@Override
+					public void run() {
+						m.changeStatus();
+						updateDisplay();
+					}
+				} , 5000 );
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void clear(ActionEvent event){
@@ -132,6 +159,8 @@ public class MainController implements Initializable {
 		findTotalCost();
 		menu();
 		setCell();
+		confirmTableView.refresh();
+		statusTableView.refresh();
 	}
 
 	public void clickMenu(ActionEvent event){
@@ -166,7 +195,7 @@ public class MainController implements Initializable {
 		}
 		setTotalItem( totalItem );
 	}
-	
+
 	public void findTotalCost(){
 		int totalCost = consoleUI.getTotalCostInConfirmList();
 		for( Menu eachMenu : consoleUI.getOrderList() ) {
@@ -175,11 +204,11 @@ public class MainController implements Initializable {
 		setTotalCost( totalCost );
 	}
 
-	
+
 	public void setTotalCost(int numTotalCost){
 		totalLabel.setText("TOTAL: " + numTotalCost);
 	}
-	
+
 	public void setTotalItem(int numAmountItem){
 		itemLabel.setText("ITEM: " + numAmountItem);
 	}
@@ -207,7 +236,7 @@ public class MainController implements Initializable {
 		setTotalItem( 0 );
 		updateDisplay();
 	}
-	
+
 	public ArrayList<Menu> getOrderList() {
 		ArrayList<Menu> newList = new ArrayList<Menu>();
 		for(int i=0; i<tableViewOrder.size() ;i++) {
@@ -215,7 +244,7 @@ public class MainController implements Initializable {
 		}
 		return newList;
 	}
-	
+
 	public ArrayList<Menu> getConfirmList() {
 		ArrayList<Menu> newList = new ArrayList<Menu>();
 		for(int i=0; i<tableViewConfirm.size() ;i++) {
@@ -223,7 +252,7 @@ public class MainController implements Initializable {
 		}
 		return newList;
 	}
-	
+
 	@FXML private ProgressIndicator progress;
 
 	@FXML private JFXButton test;
@@ -243,7 +272,7 @@ public class MainController implements Initializable {
 		deleteOrder(index);
 		updateDisplay();
 	}
-	
+
 	public void deleteOrder(int index){
 		consoleUI.DeleteOrderList( menuBook.getAllMenuList().get( index ) );
 	}
