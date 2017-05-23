@@ -35,6 +35,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 
+/**
+ * Controller of the FXML.
+ * @author Supisara Chuthathumpitak
+ * @author 
+ *
+ */
 public class MainController implements Initializable {
 
 	private ObservableList<Menu> listOrder , listConfirm , tableViewOrder , tableViewConfirm;
@@ -49,22 +55,15 @@ public class MainController implements Initializable {
 	@FXML private TableView<Menu> statusTableView;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn1, statusTableColumn3, statusTableColumn4, statusTableColumn5;
 	@FXML private TableColumn<Menu, String> statusTableColumn2;
-
+	
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
-//	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
-	@FXML private JFXButton delete2;
-	@FXML private JFXButton delete3;
-	@FXML private JFXButton delete4;
-	@FXML private JFXButton delete5;
-	@FXML private JFXButton delete6;
-	@FXML private JFXButton delete7;
-	@FXML private JFXButton delete8;
-	@FXML private JFXButton delete9;
-	@FXML private JFXButton delete10;
-	@FXML private JFXButton delete1;
+	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
 	
+	/**
+	 * Initialize MainController
+	 */
 	public MainController() {
 		try {
 			menuBook = new MenuBook( "EngMenu.csv" );
@@ -75,6 +74,9 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Create the array list and add to that table.
+	 */
 	private void menu() {
 		listOrder = FXCollections.observableArrayList( consoleUI.getOrderList() );
 		tableViewOrder = listOrder;
@@ -83,11 +85,18 @@ public class MainController implements Initializable {
 		tableViewConfirm = listConfirm;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		setCell();
 	}
 
+	/**
+	 * Set the table coulmn.
+	 */
 	public void setCell(){
 		menuTableColumn1.setCellValueFactory(new PropertyValueFactory<Menu, Integer>("menuID"));
 		menuTableColumn2.setCellValueFactory(new PropertyValueFactory<Menu, String>("menuName"));
@@ -102,27 +111,28 @@ public class MainController implements Initializable {
 		statusTableView.setItems(tableViewConfirm);
 	}
 
-	@FXML private HBox hBox;
-
-	@FXML private TabPane tabPane;
-
-	@FXML private AnchorPane confirmPane;
-
-	@FXML private AnchorPane confirmTablePane;
-
-	@FXML private AnchorPane totalPane;
-
+	/**
+	 * Send the order from order table to the status table.
+	 * @param event is whats the user press.
+	 */
 	public void confirm(ActionEvent event){
 		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
 		consoleUI.clearOrderList();
 		updateDisplay();
 	}
 
+	/**
+	 * Clear all order list from menu page.
+	 * @param event is whats the user press.
+	 */
 	public void clear(ActionEvent event){
 		consoleUI.clearOrderList();
 		updateDisplay();
 	}
 
+	/**
+	 * Update the display.
+	 */
 	public void updateDisplay() {
 		findTotalItem();
 		findTotalCost();
@@ -130,6 +140,10 @@ public class MainController implements Initializable {
 		setCell();
 	}
 
+	/**
+	 * Get the event from the user and check the index, then call the method to add order.
+	 * @param event is whats the user press.
+	 */
 	public void clickMenu(ActionEvent event){
 		int index = 0;
 		if( isButton(event, button1) ) { }
@@ -146,15 +160,28 @@ public class MainController implements Initializable {
 		updateDisplay();
 	}
 
+	/**
+	 * Check that the button that user press is which button.
+	 * @param event is whats the user press.
+	 * @param button is the button that want to check.
+	 * @return whether it is that button or not.
+	 */
 	public boolean isButton(ActionEvent event, Button button){
 		Object choosenButton = event.getSource();
 		return choosenButton.equals( button ) ;
 	}
 
+	/**
+	 * Add the menu to order list by index.
+	 * @param index is the index of that menu.
+	 */
 	public void addOrder(int index){
 		consoleUI.AddToOrderList( menuBook.getAllMenuList().get( index ) );
 	}
 
+	/**
+	 * Calculate how many item are there.
+	 */
 	public void findTotalItem() {
 		int totalItem = consoleUI.getTotalAmountInConfirmList();
 		for( Menu eachMenu : consoleUI.getOrderList()) {
@@ -163,6 +190,9 @@ public class MainController implements Initializable {
 		setTotalItem( totalItem );
 	}
 	
+	/**
+	 * Calculate the total cost.
+	 */
 	public void findTotalCost(){
 		int totalCost = consoleUI.getTotalCostInConfirmList();
 		for( Menu eachMenu : consoleUI.getOrderList() ) {
@@ -171,15 +201,26 @@ public class MainController implements Initializable {
 		setTotalCost( totalCost );
 	}
 
-	
+	/**
+	 * Set the total cost.
+	 * @param numTotalCost
+	 */
 	public void setTotalCost(int numTotalCost){
 		totalLabel.setText("TOTAL: " + numTotalCost);
 	}
 	
+	/**
+	 * Set the total item.
+	 * @param numAmountItem is the number of item that user want to order.
+	 */
 	public void setTotalItem(int numAmountItem){
 		itemLabel.setText("ITEM: " + numAmountItem);
 	}
 
+	/**
+	 * Write the bill for customer.
+	 * @param event is whats the user press.
+	 */
 	public void checkbill(ActionEvent event) {
 		try {
 			String today = LocalDate.now().toString();
@@ -202,6 +243,10 @@ public class MainController implements Initializable {
 		updateDisplay();
 	}
 	
+	/**
+	 * Get the event from the user and check the index, then call the method to delete.
+	 * @param event is whats the user press.
+	 */
 	public void deleteSomeMenu(ActionEvent event){
 		int index = 0;
 		if( isButton(event, delete1) ) { }
@@ -218,11 +263,11 @@ public class MainController implements Initializable {
 		updateDisplay();
 	}
 	
+	/**
+	 * Delete the menu order that user want to cancel.
+	 * @param index
+	 */
 	public void deleteOrder(int index){
 		consoleUI.DeleteOrderList( menuBook.getAllMenuList().get( index ) );
 	}
-
-	@FXML private Tab menuTab;
-
-	@FXML private Label menuName;
 }

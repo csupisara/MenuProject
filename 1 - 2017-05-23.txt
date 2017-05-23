@@ -1,9 +1,9 @@
 Bill No.1 "SKE14 RESTAURANT"
 (VAT INCLUDED)
 
-ID: 1, Name: "Tom Yum Gung" , Cost: 600, Amount: 3
+ID: 1, Name: "Tom Yum Gung" , Cost: 1000, Amount: 5
 
 
 -----------------
-TOTAL: 600 Baht
+TOTAL: 1000 Baht
 THANK YOU

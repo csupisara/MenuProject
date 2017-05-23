@@ -9,8 +9,17 @@ import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
+/**
+ * Start the program.
+ * @author Supisara Chuthathumpitak
+ *
+ */
 public class Main extends Application {
 	
+	/*
+	 * (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
 		try {
@@ -23,6 +32,10 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Run the program
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
