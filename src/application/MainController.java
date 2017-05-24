@@ -3,6 +3,7 @@ package application;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -54,7 +55,7 @@ public class MainController implements Initializable {
 	 */
 	public MainController() {
 		try {
-			menuBook = new MenuBook( "EngMenu.csv" );
+			menuBook = new MenuBook();
 			consoleUI = new ConsoleUI( menuBook );
 			menu();
 		} catch( Exception ex ) {
