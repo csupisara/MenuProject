@@ -2,8 +2,10 @@ package application;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,22 +28,21 @@ public class MenuBook {
 	private List<String> readMenu;
 	private List<Integer> readPrice;
 
-	public MenuBook( String fileName ) {
+	public MenuBook() {
 		try {
-			this.fileName = fileName;
 			list = new ArrayList<Menu>();
 			readID = new ArrayList<Integer>();
 			readMenu = new ArrayList<String>();
 			readPrice = new ArrayList<Integer>();
-			createMenu( fileName );	
+			createMenu();	
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}
 	}
 
-	private void createMenu(String inputFileName) {
+	private void createMenu() {
 		try {
-			inputStream = new FileInputStream( inputFileName );
+			this.inputStream = getClass().getResource("/application/EngMenu.csv").openStream(); 
 			buffReader = new BufferedReader( new InputStreamReader( inputStream ) );
 
 			readLine = buffReader.readLine();
@@ -99,10 +100,15 @@ public class MenuBook {
 	}
 
 	public void resetMenu() {
-		list.clear();
-		readID.clear();
-		readMenu.clear();
-		readPrice.clear();
-		createMenu( fileName );
+		try {
+			list.clear();
+			readID.clear();
+			readMenu.clear();
+			readPrice.clear();
+			inputStream.close();
+			createMenu();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

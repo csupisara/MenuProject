@@ -2,6 +2,9 @@ package application;
 
 import java.io.IOException;
 
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,7 +17,7 @@ import javafx.scene.Scene;
  * @author Sathira Kittisukmongkol
  */
 public class Main extends Application {
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see javafx.application.Application#start(javafx.stage.Stage)
@@ -36,7 +39,12 @@ public class Main extends Application {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		launch(args);
+		try {
+			UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+			launch(args);
+		} catch( Exception ex ) {
+			ex.printStackTrace();
+		}
 	}
 
 }
