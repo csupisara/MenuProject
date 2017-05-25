@@ -203,9 +203,9 @@
                         </BorderPane>
                      </content>
                 </Tab>
-                <Tab fx:id="statusTab" text="STATUS">
+                <Tab text="STATUS">
                   <content>
-                    <AnchorPane fx:id="statusPane" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <BorderPane prefHeight="436.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                  <left>
