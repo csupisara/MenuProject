@@ -242,14 +242,30 @@ public class MainController implements Initializable {
 			String today = LocalDate.now().toString();
 			String fileName = "Table_"+ tableNumber + " Bill_ " + billNumber + "_" + today + ".txt";
 			BufferedWriter writer = new BufferedWriter(new FileWriter( fileName ));
-			String headBill = "\"SKE14 RESTAURANT\" "+" Table No."+tableNumber+" , Bill No." + billNumber + "\n(VAT INCLUDED)\n\n";
+			String headBill = "\"SKE14 RESTAURANT\" "+" Table No."+tableNumber+" , Bill No." + billNumber;
 			writer.write( headBill );
+			writer.newLine();
+			String vatMessage = "(VAT INCLUDED)";
+			writer.write( vatMessage );
+			writer.newLine();
+			writer.newLine();
 			for( Menu x : consoleUI.getConfirmList() ){
-				writer.write( x.toString() + "\n");
+				writer.write( x.toString() );
+				writer.newLine();
 			}
-			String buttomBill = "\n-----------------\nTOTAL(VAT included) : " + costAndVat( calculateVat(consoleUI.getTotalCostInConfirmList()), consoleUI.getTotalCostInConfirmList()) 
-			+ " Baht\nVAT " + calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht\nTHANK YOU";
-			writer.write( buttomBill );
+			String Dash = "-----------------";
+			writer.write( Dash );
+			writer.newLine();
+			String totalBill = "TOTAL(VAT included) : " + costAndVat( calculateVat(consoleUI.getTotalCostInConfirmList()), consoleUI.getTotalCostInConfirmList()) 
+			+ " Baht";
+			writer.write( totalBill );
+			writer.newLine();
+			String vatPay = "VAT7% "+ calculateVat(consoleUI.getTotalCostInConfirmList()) + " Baht";
+			writer.write( vatPay );
+			writer.newLine();
+			String thankyouMessage = "THANK YOU";
+			writer.write( thankyouMessage );
+			writer.newLine();
 			writer.close();
 			billNumber++;
 		} catch (Exception e) {
