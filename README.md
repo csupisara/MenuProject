@@ -1,7 +1,7 @@
 # Menu Project
 
 ## Project description
-  Our restaurant program can order menu, calculate the total price, know the status of each menu order and create a bill. 
+\tOur restaurant program can order menu, calculate the total price, know the status of each menu order and create a bill. 
 This can reduce waiter in the restaurant and customer can make sure that the order was correct.
 
 ## Why we do this project
