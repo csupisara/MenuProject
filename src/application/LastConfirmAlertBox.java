@@ -52,7 +52,6 @@ public class LastConfirmAlertBox {
 		} );
 
 		VBox layoutVertical = new VBox( 10 );
-		HBox layoutHorizon = new HBox( 10 );
 		layoutVertical.getChildren().addAll( label1, label2, label3, confirmButton, cancelButton  );
 		layoutVertical.setAlignment( Pos.CENTER );
 
