@@ -18,6 +18,7 @@ This can reduce waiter in the restaurant and customer can make sure that the ord
 
 ## Installation
 - Computer must have Java version 8 to run the program.
+- You have to download "SKE14Restaurant.jar" to your computer and you can enjoy with our program.
 
 ## Members
 > Supisara Chuthathumpitak (@csupisara)
