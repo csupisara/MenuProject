@@ -19,8 +19,7 @@ import javafx.scene.Scene;
 public class Main extends Application {
 
 	/*
-	 * (non-Javadoc)
-	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 * Loads an object hierarchy from an XML document.
 	 */
 	@Override
 	public void start(Stage primaryStage) throws IOException {
@@ -35,7 +34,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Run the program
+	 * Run the program.
 	 * @param args
 	 */
 	public static void main(String[] args) {

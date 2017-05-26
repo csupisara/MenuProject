@@ -91,18 +91,32 @@ public class Menu {
 		return sentence;
 	}
 
+	/**
+	 * Get the status of this menu.
+	 * @return Cooking, this menu is cooking. Done, this menu has finished.
+	 */
 	public String getStatus() {
 		return status.get();
 	}
 	
+	/**
+	 * Add this menu amount by 1.
+	 */
 	public void addOneAmount() {
 		menuAmount.set( menuAmount.get()+1 );
 	}
 	
+	/**
+	 * Add many amount of this menu.
+	 * @param n, amount that customers want to increase.
+	 */
 	public void addManyAmount(int n) {
 		menuAmount.set( menuAmount.get()+n );
 	}
 	
+	/**
+	 * Change status from Cooking to be Done.
+	 */
 	public void changeStatus() {
 		if( status.get().equalsIgnoreCase( "Cooking" ) ) {
 			status.set( "Done" );

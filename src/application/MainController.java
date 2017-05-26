@@ -75,8 +75,7 @@ public class MainController implements Initializable {
 	}
 
 	/*
-	 * (non-Javadoc)
-	 * @see javafx.fxml.Initializable#initialize(java.net.URL, java.util.ResourceBundle)
+	 * First method that will be worked after constructor worked finish.
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -1,6 +1,7 @@
 package application;
 
 import javafx.event.ActionEvent;
+
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,10 +12,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Alert box when customers click confirm.
+ * Check that customers ensure about their ordered menu.
+ * @author Supisara Chuthathumpitak
+ * @author Sathira Kittisukmongkol
+ */
 public class LastConfirmAlertBox {
 
 	private static boolean controlCooking;
 	
+	/**
+	 * Display the alert box after customers click confirm button.
+	 */
 	public static void display(){
 		Stage window = new Stage();
 
@@ -52,7 +62,6 @@ public class LastConfirmAlertBox {
 		} );
 
 		VBox layoutVertical = new VBox( 10 );
-		HBox layoutHorizon = new HBox( 10 );
 		layoutVertical.getChildren().addAll( label1, label2, label3, confirmButton, cancelButton  );
 		layoutVertical.setAlignment( Pos.CENTER );
 
@@ -61,6 +70,10 @@ public class LastConfirmAlertBox {
 		window.showAndWait();
 	}
 	
+	/**
+	 * Check that is chef must be cooking?
+	 * @return true if customers choose confirm, false if customers cancel.
+	 */
 	public static boolean shouldCook() {
 		return controlCooking;
 	}

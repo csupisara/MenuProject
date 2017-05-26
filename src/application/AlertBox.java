@@ -10,12 +10,16 @@ import javafx.stage.*;
 import javafx.stage.Stage;
 
 /**
- * 
+ * AlertBox when some button is pressed.
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
  */
 public class AlertBox {
 
+	/**
+	 * Display the alert box.
+	 * @param text, The sentence that will be shown in the window.
+	 */
 	public static void display(String text){
 		Stage window = new Stage();
 

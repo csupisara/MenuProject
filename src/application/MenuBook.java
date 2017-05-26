@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Menubook shows all menu in the restaurant.
+ * This class creates all menu from EngMenu.csv file.
  * @author Supisara Chuthathumpitak
  * @author Sathira Kittisukmongkol
  */
@@ -28,6 +29,9 @@ public class MenuBook {
 	private List<String> readMenu;
 	private List<Integer> readPrice;
 
+	/**
+	 * Constructor of this class.
+	 */
 	public MenuBook() {
 		try {
 			list = new ArrayList<Menu>();
@@ -40,6 +44,9 @@ public class MenuBook {
 		}
 	}
 
+	/**
+	 * Read EngMenu.csv file and create all menu.
+	 */
 	private void createMenu() {
 		try {
 			this.inputStream = getClass().getResource("/application/EngMenu.csv").openStream(); 
@@ -67,10 +74,18 @@ public class MenuBook {
 		}
 	}
 
+	/**
+	 * Get all menu in the book.
+	 * @return list, Arrayslist that contains all menu in the book.
+	 */
 	public ArrayList<Menu> getAllMenuList() {
 		return list;
 	}
 
+	/**
+	 * Get all ID's menu in the book.
+	 * @return box, array of ID's menu in the book.
+	 */
 	public int[] getIDArray() {
 		int[] box = new int[ readID.size() ];
 		for(int i=0;i<box.length;i++) {
@@ -79,6 +94,10 @@ public class MenuBook {
 		return box;
 	}
 
+	/**
+	 * Get all Name's menu in the book.
+	 * @return box, array of ID's menu in the book.
+	 */
 	public String[] getMenuArray() {
 		String[] box = new String[ readMenu.size() ];
 		for(int i=0;i<box.length;i++) {
@@ -87,6 +106,10 @@ public class MenuBook {
 		return box;
 	}
 
+	/**
+	 * Get all Price's menu in the book.
+	 * @return box, array of ID's menu in the book.
+	 */
 	public int[] getPriceArray() {
 		int[] box = new int[ readPrice.size() ];
 		for(int i=0;i<box.length;i++) {
@@ -95,10 +118,17 @@ public class MenuBook {
 		return box;
 	}
 
+	/**
+	 * Get the amount of menu in the book.
+	 * @return
+	 */
 	public int getCapacity() {
 		return capacity;
 	}
 
+	/**
+	 * Reset all menu in the book.
+	 */
 	public void resetMenu() {
 		try {
 			list.clear();
