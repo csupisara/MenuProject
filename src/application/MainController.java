@@ -43,13 +43,13 @@ public class MainController implements Initializable {
 	@FXML private TableView<Menu> statusTableView;
 	@FXML private TableColumn<Menu, Integer> statusTableColumn3, statusTableColumn4;
 	@FXML private TableColumn<Menu, String> statusTableColumn2, statusTableColumn5;;
-	
+
 	@FXML private Button clear, confirm, checkbill;
 	@FXML private Button button1, button2, button3, button4, button5, button6, button7, button8, button9, button10;;
 	@FXML private Label totalLabel, itemLabel;
 	@FXML private JFXButton delete1, delete2, delete3, delete4, delete5, delete6, delete7, delete8, delete9, delete10;
 	@FXML private Label totalAll;
-	
+
 	/**
 	 * Initialize MainController
 	 */
@@ -104,32 +104,34 @@ public class MainController implements Initializable {
 	 * @param event is whats the user press.
 	 */
 	public void confirm(ActionEvent event){
-		consoleUI.AddToConfirmList( consoleUI.getOrderList() );
-		consoleUI.clearOrderList();
-		updateDisplay();
-		AlertBox.display("You can check your order at STATUS tab on the top.");
-		for(int i=0 ; i<consoleUI.getConfirmList().size() ; i++) {
-			Menu m = consoleUI.getConfirmList().get(i);
-			java.util.Timer timer = new java.util.Timer();
-			try {
-				if( i==0 ) {
-					/* Do nothing. */
-				}
-				else {
-					TimeUnit.SECONDS.sleep( 1*m.getMenuAmount() );					
-				}
-				timer.schedule( new TimerTask() {
-					
-					@Override
-					public void run() {
-						m.changeStatus();
-						updateDisplay();
+		LastConfirmAlertBox.display();
+		if( LastConfirmAlertBox.shouldCook() ) {
+			consoleUI.AddToConfirmList( consoleUI.getOrderList() );
+			consoleUI.clearOrderList();
+			updateDisplay();
+			for(int i=0 ; i<consoleUI.getConfirmList().size() ; i++) {
+				Menu m = consoleUI.getConfirmList().get(i);
+				java.util.Timer timer = new java.util.Timer();
+				try {
+					if( i==0 ) {
+						/* Do nothing. */
 					}
-				} , 5000 );
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}		
+					else {
+						TimeUnit.SECONDS.sleep( 1*m.getMenuAmount() );					
+					}
+					timer.schedule( new TimerTask() {
+
+						@Override
+						public void run() {
+							m.changeStatus();
+							updateDisplay();
+						}
+					} , 5000 );
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}	
+		}	
 	}
 
 	/**
@@ -203,7 +205,7 @@ public class MainController implements Initializable {
 		}
 		setTotalItem( totalItem );
 	}
-	
+
 	/**
 	 * Calculate the total cost.
 	 */
@@ -222,7 +224,7 @@ public class MainController implements Initializable {
 	public void setTotalCost(int numTotalCost){
 		totalLabel.setText("TOTAL: " + numTotalCost);
 	}
-	
+
 	/**
 	 * Set the total item.
 	 * @param numAmountItem is the number of item that user want to order.
@@ -278,7 +280,7 @@ public class MainController implements Initializable {
 		setTotalAll( 0 );
 		updateDisplay();
 	}
-	
+
 	/**
 	 * Calculate the vat.
 	 * @param total is the total cost of all food that user order.
@@ -287,7 +289,7 @@ public class MainController implements Initializable {
 	public int calculateVat(int total){
 		return (int) ((int)total*0.07);
 	}
-	
+
 	/**
 	 * Calculate the total cost that customer need to pay.
 	 * @param vat is the vat for that cost.
@@ -297,8 +299,8 @@ public class MainController implements Initializable {
 	public double costAndVat(int vat, int cost){
 		return cost + vat;
 	}
-	
-	
+
+
 	/**
 	 * Get the event from the user and check the index, then call the method to delete.
 	 * @param event is whats the user press.
@@ -318,7 +320,7 @@ public class MainController implements Initializable {
 		deleteOrder(index);
 		updateDisplay();
 	}
-	
+
 	/**
 	 * Delete the menu order that user want to cancel.
 	 * @param index
@@ -326,7 +328,7 @@ public class MainController implements Initializable {
 	public void deleteOrder(int index){
 		consoleUI.DeleteOrderList( menuBook.getAllMenuList().get( index ) );
 	}
-	
+
 	/**
 	 * Set total that user confirm.
 	 * @param total is the total cost of all menu rhat user confirm.
@@ -334,5 +336,5 @@ public class MainController implements Initializable {
 	public void setTotalAll(int total){
 		totalAll.setText("TOTAL: " + total);
 	}
-	
+
 }

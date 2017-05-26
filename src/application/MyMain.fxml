@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -222,10 +228,7 @@
                                     <Pane prefHeight="369.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                                        <children>
                                           <JFXButton fx:id="checkbill" layoutX="53.0" layoutY="385.0" onAction="#checkbill" ripplerFill="WHITE" style="-fx-background-color: #daa520;" text="CHECK BILL" textAlignment="CENTER" textFill="WHITE" textOverrun="CENTER_ELLIPSIS" underline="true" />
-                                          <PasswordField layoutX="-5.0" layoutY="39.0" prefHeight="27.0" prefWidth="131.0" />
-                                          <Label layoutX="1.0" layoutY="14.0" text="MEMBER ID (Discount 10%) :" />
-                                          <JFXButton fx:id="userLogin" layoutX="132.0" layoutY="39.0" style="-fx-background-color: #008b8b;" text="ENTER" textFill="WHITE" />
-                                          <Label fx:id="totalAll" layoutX="71.0" layoutY="342.0" text="TOTAL: 0" />
+                                          <Label fx:id="totalAll" layoutX="68.0" layoutY="342.0" text="TOTAL: 0" />
                                        </children>
                                     </Pane>
                                  </right>
