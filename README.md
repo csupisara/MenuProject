@@ -1,8 +1,7 @@
 # Menu Project
 
 ## Project description
-Our restaurant program can order menu, calculate the total price, know the status of each menu order and create a bill. 
-
+  Our restaurant program can order menu, calculate the total price, know the status of each menu order and create a bill. 
 This can reduce waiter in the restaurant and customer can make sure that the order was correct.
 
 ## Why we do this project
@@ -21,6 +20,6 @@ This can reduce waiter in the restaurant and customer can make sure that the ord
 - Computer must have Java version 8 to run the program.
 
 ## Members
-Supisara Chuthathumpitak (@csupisara)
++ Supisara Chuthathumpitak (@csupisara)
 
-Sathira Kittisukmongkol (@nongjamie)
++ Sathira Kittisukmongkol (@nongjamie)
