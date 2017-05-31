@@ -1,6 +1,6 @@
 # Menu Project
 
-Online page [Link](https://csupisara.github.io/MenuProject/)
+Our online page [Link](https://csupisara.github.io/MenuProject/)
 
 ## Project description
 Our restaurant program can order menu, calculate the total price, know the status of each menu order and create a bill. 
@@ -20,7 +20,7 @@ This can reduce waiter in the restaurant and customer can make sure that the ord
 
 ## Installation
 - Computer must have Java version 8 to run the program.
-- You have to download "SKE14Restaurant.jar" to your computer and you can enjoy with our program.
+- You have to download [SKE14Restaurant.jar](https://github.com/csupisara/MenuProject/blob/master/SKE14Restaurant.jar) to your computer and you can enjoy with our program. 
 
 ## Members
 > Supisara Chuthathumpitak (@csupisara)
